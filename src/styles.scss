@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+:root {
+    // colors
+    --primary-color: #C6AE7E; 
+    --white-color: #ffffff; 
+    --background-color: #38353C; 
+    --green-color: #6EF677; 
+    --red-color: #EF4E4E; 
+
+    // fonts
+    --jost-font:"Jost", sans-serif;
+    --fira-font:"Fira Code", monospace;
+
+}
+
+
+body{
+    background-color: var(--background-color);
+    color: var(--white-color);
+}
+
