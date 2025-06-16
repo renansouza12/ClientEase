@@ -27,3 +27,21 @@ body{
     color: var(--white-color);
 }
 
+h2{
+    font-family: var(--jost-font);
+    font-weight: 400;
+    font-size: 2rem;
+
+    color: var(--primary-color);
+}
+
+
+textarea{
+    outline:none;
+    resize: none;
+    color: var(--white-color);
+    font-family: var(--fira-font);
+    font-size: 15px;
+    border:none;
+    background:transparent;
+}
