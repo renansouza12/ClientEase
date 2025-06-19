@@ -16,6 +16,9 @@
         height: 100%;
         @include flex(column);
 
+        h2{
+            font-size: 18px;
+        }
         p{
             font-size: 14px;
         }

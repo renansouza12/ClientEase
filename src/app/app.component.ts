@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AnnotationComponent } from './components/annotation/annotation.component';
-import { CardClientComponent } from './components/card-client/card-client.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,AnnotationComponent,CardClientComponent],
+  imports: [RouterOutlet,AnnotationComponent,CardsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
