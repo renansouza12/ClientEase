@@ -1,0 +1,39 @@
+@mixin flex($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+
+:host{
+    display: flex;
+    border: 1px solid var(--primary-color);
+    height: 80px;
+    width: fit-content;
+    padding: 10px;
+    gap: 2rem;
+
+    .client_information{
+        height: 100%;
+        @include flex(column);
+
+        p{
+            font-size: 14px;
+        }
+    }
+    .dates{
+        @include flex(column);
+        justify-content: center;
+        align-items: center;
+        p{
+            font-size: 13px;
+
+            &:nth-child(1){
+                color: var(--red-color);
+            }
+
+            &:nth-child(3){
+               color: var(--green-color);
+            }
+        }
+    }
+}
