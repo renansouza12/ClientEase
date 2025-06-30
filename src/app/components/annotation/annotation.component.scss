@@ -1,20 +1,41 @@
-:host{
-    display:flex;
+:host {
+    display: flex;
     flex-direction: column;
-    gap:1rem;
-    height: 100%;
+    gap: 1rem;
+    height: 90vh;
     width: 50vw;
     margin-top: 2rem;
-    .annotations{
-        height: 80vh;
-        
 
-        textarea{
-            height:100%;
-            width:100%;
+
+    .annotations {
+        height: 100%;
+
+
+        textarea {
+            height: 100%;
+            width: 100%;
 
         }
 
     }
 
+}
+
+@media (max-width:550px) {
+    :host {
+        width: 100vw;
+        height: 40vh;
+
+        h2{
+            margin-left:10px;
+        }
+
+
+        .annotations {
+            textarea {
+                padding-left:10px;
+            }
+        }
+
+    }
 }
