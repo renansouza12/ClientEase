@@ -39,6 +39,21 @@
             background-color: var(--primary-color);
         }
     }
+    .cards > .cdk-drag {
+        transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+        will-change: transform;
+        cursor: grab;
+    }
+
+    .cards > .cdk-drag-placeholder {
+        opacity: 0.3;
+        background: var(--primary-color); 
+        border: 2px dashed var(--primary-color);  
+    }
+    .cards > .cdk-drag.cdk-drag-dragging {
+        cursor: grabbing; 
+    }
+
 
     h2 {
         font-size: 2rem;

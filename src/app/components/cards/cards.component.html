@@ -1,10 +1,11 @@
-<div class="cards">
+<div class="cards" cdkDropList  (cdkDropListDropped)="drop($event)">
     @for (client of clients; track client.name) {
         <app-card-client 
             [name]="client.name"
             [plan]="client.plan"
             [startDate]="client.startDate"
             [endDate]="client.endDate"
+            cdkDrag
             />
     }
 </div>
