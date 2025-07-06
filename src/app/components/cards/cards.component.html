@@ -1,14 +1,10 @@
-
-<h2>Clients</h2>
 <div class="cards">
-    <app-card-client/>
-    <app-card-client/>
-    <app-card-client/>
-    <app-card-client/>
-    <app-card-client/>
-        <app-card-client/>
-    <app-card-client/>  
-    <app-card-client/>  
-       <app-card-client/>  
-
+    @for (client of clients; track client.name) {
+        <app-card-client 
+            [name]="client.name"
+            [plan]="client.plan"
+            [startDate]="client.startDate"
+            [endDate]="client.endDate"
+            />
+    }
 </div>

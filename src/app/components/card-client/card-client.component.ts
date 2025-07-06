@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card-client',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './card-client.component.html',
   styleUrl: './card-client.component.scss'
 })
 export class CardClientComponent {
-
+  @Input() name!:string;
+  @Input() plan!:string;
+  @Input() startDate!:Date;
+  @Input() endDate!:Date;
 }

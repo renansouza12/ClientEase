@@ -3,12 +3,13 @@
   flex-direction: $direction;
 }
 
-
 :host{
     display: flex;
     border: 1px solid var(--primary-color);
-    height: 80px;
-    width: fit-content;
+    height: 80px; 
+    width: 300px;  
+    min-width: 250px;
+    max-width: 100%;
     padding: 10px 2rem;
     gap: 2rem;
 
