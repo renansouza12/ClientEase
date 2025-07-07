@@ -12,6 +12,7 @@
     max-width: 100%;
     padding: 10px 2rem;
     gap: 2rem;
+    position:relative;
 
     .client_information{
         height: 100%;
@@ -39,6 +40,32 @@
                color: var(--red-color);
             }
         }
+    }
+
+    .option{
+        position:absolute;
+        top:5%;
+        left:50%;
+        transform:translate(-50%,-50%);
+
+
+        color: var(--white-color);
+        border-bottom: 1px solid #333136;
+        border-left:1px solid #2c2930;
+        background:#423e47;
+        padding:2px 10px;
+        border-radius:.2rem;
+        transition: .2s ease-in-out;
+        opacity:0;
+
+        &:active{
+            border-bottom: 0px solid #333136;
+            border-left:0px solid #2c2930;
+        }
+    }
+    &:hover .option{
+        opacity:1;
+        top:18%;
     }
 }
 

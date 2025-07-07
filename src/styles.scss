@@ -50,3 +50,10 @@ textarea{
 p{
     font-family:var(--quicksand-font) ;
 }
+
+button{
+    background:transparent;
+    border:none;
+    outline:none;
+    cursor:pointer;
+}
