@@ -12,4 +12,11 @@ export class CardClientComponent {
   @Input() plan!:string;
   @Input() startDate!:Date;
   @Input() endDate!:Date;
+  
+  showOptions:boolean = false;
+
+
+   protected option():void{
+    this.showOptions = !this.showOptions;
+  }
 }
