@@ -19,4 +19,9 @@ export class CardClientComponent {
    protected option():void{
     this.showOptions = !this.showOptions;
   }
+
+  protected view():void {
+    this.showOptions = false;
+    console.log("view button clicked");
+  }
 }
