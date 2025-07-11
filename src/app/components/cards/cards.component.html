@@ -3,8 +3,10 @@
         <app-card-client 
             [name]="client.name"
             [plan]="client.plan"
+            [client]="client"
             [startDate]="client.startDate"
             [endDate]="client.endDate"
+            (viewClientData)="handleViewClientData($event)"
             cdkDrag
             />
     }

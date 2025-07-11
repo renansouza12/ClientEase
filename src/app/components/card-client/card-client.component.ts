@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Client } from '../../models/client.interface';
 
 @Component({
   selector: 'app-card-client',
@@ -8,20 +9,26 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-client.component.scss'
 })
 export class CardClientComponent {
-  @Input() name!:string;
-  @Input() plan!:string;
-  @Input() startDate!:Date;
-  @Input() endDate!:Date;
-  
-  showOptions:boolean = false;
+  @Input() name!: string;
+  @Input() plan!: string;
+  @Input() startDate!: Date;
+  @Input() endDate!: Date;
+  @Input() client!: Client;
+
+  showOptions: boolean = false;
 
 
-   protected option():void{
+  @Output() viewClientData: EventEmitter<Client> = new EventEmitter<Client>();
+
+  protected option(): void {
     this.showOptions = !this.showOptions;
   }
 
-  protected view():void {
+  protected view(): void {
     this.showOptions = false;
     console.log("view button clicked");
+    this.viewClientData.emit(this.client);
   }
+
+
 }

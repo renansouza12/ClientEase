@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { CardClientComponent } from '../card-client/card-client.component';
 import {CdkDrag,CdkDragDrop,CdkDropList,moveItemInArray} from '@angular/cdk/drag-drop';
+import { Client } from '../../models/client.interface';
 
-  interface Client{
-      name:string;
-      plan:string;
-      startDate:Date;
-      endDate:Date
-    }
 
 @Component({
   selector: 'app-cards',
@@ -82,6 +77,11 @@ export class CardsComponent {
 
    drop(event: CdkDragDrop<Client[]>) {
     moveItemInArray(this.clients, event.previousIndex, event.currentIndex);
+  }
+
+  handleViewClientData(client: Client): void {
+    console.log("Client data viewed:", client);
+    // Here you can handle the client data, e.g., navigate to a detail page or open a modal
   }
 
 }
