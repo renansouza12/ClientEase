@@ -11,3 +11,12 @@
             />
     }
 </div>
+
+
+<div class="client_detail">
+    <h2>{{selectedClient?.name}}</h2>
+    <h3>{{selectedClient?.plan}}</h3>
+    <p>{{selectedClient?.startDate | date: 'longDate'}}</p>
+    <p>{{selectedClient?.endDate | date:'longDate'}}</p>
+    <p>{{selectedClient?.phoneNumber }}</p>
+</div>

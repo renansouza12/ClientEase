@@ -3,4 +3,5 @@ export interface Client {
   plan: string;
   startDate: Date;
   endDate: Date;
+  phoneNumber?: string; 
 }
