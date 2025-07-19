@@ -13,7 +13,7 @@ import { Client } from '../../models/client.interface';
 })
 export class CardsComponent {
 
-  selectedClient: Client | null = null;
+  selectedClients: Client[] = [];
 
   clients:Client[]=[
     { 
@@ -88,13 +88,20 @@ export class CardsComponent {
     }
   ];
 
-   drop(event: CdkDragDrop<Client[]>) {
+   protected drop(event: CdkDragDrop<Client[]>) {
     moveItemInArray(this.clients, event.previousIndex, event.currentIndex);
   }
 
-  handleViewClientData(client: Client): void {
+  protected handleViewClientData(client: Client): void {
     console.log("Client data viewed:", client);
-    this.selectedClient = client;
+    if (!this.selectedClients.some(c => c.name === client.name)) {
+      this.selectedClients.push(client);
+    }
+  }
+
+  closeClient(index:number):void{
+    console.log("close button clicked");
+    this.selectedClients.splice(index,1);
   }
 
 }
