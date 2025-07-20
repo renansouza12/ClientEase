@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 *{
     margin: 0%;
     padding: 0%;
@@ -25,6 +26,7 @@
     --jost-font:"Jost", sans-serif;
     --fira-font:"Fira Code", monospace;
     --quicksand-font:"Quicksand", sans-serif;
+    --ibm-font:"IBM Plex Sans", sans-serif;
 
 }
 
@@ -42,7 +44,11 @@ h2{
     color: var(--primary-color);
 }
 
+h3{
+    font-family: var(--ibm-font);
+    font-weight: 400;
 
+}
 textarea{
     outline:none;
     resize: none;
