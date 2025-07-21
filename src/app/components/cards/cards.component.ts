@@ -15,6 +15,7 @@ import { ClientService } from '../../services/client.service';
 export class CardsComponent implements OnInit {
 
   clients: Client[] = [];
+  viewedClients: Client[] = [];
   clientActives: number = 0;
 
 
@@ -24,6 +25,9 @@ export class CardsComponent implements OnInit {
     this.clientService.clients$.subscribe(clients => {
       this.clients = clients;
       this.clientActives = clients.length;
+      this.viewedClients = this.viewedClients.filter(vc =>
+        clients.some(c => c.name === vc.name)
+      );
     })
   }
 
@@ -32,13 +36,13 @@ export class CardsComponent implements OnInit {
   }
 
   protected handleViewClientData(client: Client): void {
-    if (!this.clients.some(c => c.name === client.name)) {
-      this.clients.push(client);
+    if (!this.viewedClients.some(c => c.name === client.name)) {
+      this.viewedClients.push(client);
     }
   }
 
   protected closeClient(index: number): void {
-    this.clients.splice(index, 1);
+    this.viewedClients.splice(index, 1);
   }
 
   protected handleDeleteClient(client: Client): void {

@@ -14,8 +14,8 @@
 
 <h3>{{clientActives}}</h3>
 
-<div class="client_detail" *ngIf="selectedClients.length > 0">
-  @for (client of selectedClients; track client.name; let i = $index) {
+<div class="client_detail" *ngIf="viewedClients.length > 0">
+  @for (client of viewedClients; track client.name; let i = $index) {
   <div class="client_viewed_bg" cdkDrag>
     <div class="client_viewed">
       <h2>{{client.name}}</h2>
