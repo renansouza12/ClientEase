@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardClientComponent } from '../card-client/card-client.component';
 import {CdkDrag,CdkDragDrop,CdkDropList,moveItemInArray} from '@angular/cdk/drag-drop';
 import { Client } from '../../models/client.interface';
@@ -11,9 +11,11 @@ import { Client } from '../../models/client.interface';
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss'
 })
-export class CardsComponent {
-
+export class CardsComponent implements OnInit {
+ 
   selectedClients: Client[] = [];
+  clientActives:number = 0;
+
 
   clients:Client[]=[
     { 
@@ -88,7 +90,11 @@ export class CardsComponent {
     }
   ];
 
-   protected drop(event: CdkDragDrop<Client[]>) {
+   ngOnInit(): void {
+    this.clientActives = this.clients.length;
+  }
+
+  protected drop(event: CdkDragDrop<Client[]>) {
     moveItemInArray(this.clients, event.previousIndex, event.currentIndex);
   }
 
@@ -99,9 +105,18 @@ export class CardsComponent {
     }
   }
 
-  closeClient(index:number):void{
+  protected closeClient(index:number):void{
     console.log("close button clicked");
     this.selectedClients.splice(index,1);
   }
+
+  protected handleDeleteClient(client: Client): void {
+    console.log("Client deleted:", client);
+    this.clients = this.clients.filter(c => c.name !== client.name);
+    this.clientActives = this.clients.length;
+
+  }
+
+
 
 }

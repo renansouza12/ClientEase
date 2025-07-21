@@ -1,10 +1,18 @@
 <div class="cards" cdkDropList (cdkDropListDropped)="drop($event)">
   @for (client of clients; track client.name) {
-  <app-card-client [name]="client.name" [plan]="client.plan" [client]="client" [startDate]="client.startDate"
-    [endDate]="client.endDate" (viewClientData)="handleViewClientData($event)" cdkDrag />
+  <app-card-client 
+    [name]="client.name" 
+    [plan]="client.plan" 
+    [client]="client" 
+    [startDate]="client.startDate"
+    [endDate]="client.endDate"
+     (viewClientData)="handleViewClientData($event)"
+     (deleteClient)="handleDeleteClient($event)" 
+     cdkDrag />
   }
 </div>
 
+<h3>{{clientActives}}</h3>
 
 <div class="client_detail" *ngIf="selectedClients.length > 0">
   @for (client of selectedClients; track client.name; let i = $index) {
