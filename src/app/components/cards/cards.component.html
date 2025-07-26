@@ -1,3 +1,4 @@
+<button (click)="addClient()">Add client</button>
 <div class="cards" cdkDropList (cdkDropListDropped)="drop($event)">
   @for (client of clients; track client.name) {
   <app-card-client 
@@ -10,7 +11,7 @@
      (deleteClient)="handleDeleteClient($event)" 
      cdkDrag />
   }
-</div>
+</div> 
 
 <h3>{{clientActives}}</h3>
 

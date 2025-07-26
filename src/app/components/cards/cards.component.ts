@@ -50,5 +50,8 @@ export class CardsComponent implements OnInit {
 
   }
 
+  protected addClient(): void {
+    console.log('Add client button clicked');
+  }
 
 }
