@@ -7,8 +7,6 @@ import { Client } from '../models/client.interface';
 })
 export class ClientService {
 
-  constructor() { }
-
   private clientsSource = new BehaviorSubject<Client[]>([
      { 
       name:"Alice",
@@ -82,7 +80,10 @@ export class ClientService {
     }
   ]);
 
+  private formVisible = new BehaviorSubject<boolean>(false);
+
   clients$ = this.clientsSource.asObservable();
+  formVisible$ = this.formVisible.asObservable();
 
   getClients():Client[]{
     return this.clientsSource.getValue();
@@ -92,4 +93,13 @@ export class ClientService {
     const updated = this.getClients().filter(client => client.name !== nameToRemove);
     this.clientsSource.next(updated);
   }
+
+  showForm():void{
+    this.formVisible.next(true);
+  }
+
+  hideForm():void{
+    this.formVisible.next(false);
+  }
+
 }
