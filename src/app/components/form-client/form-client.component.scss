@@ -1,11 +1,16 @@
 :host{
-    display: block;
     background-color: red;
-    height: 100px;
-    width: 100px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height:400px;
+    width:300px;
+    gap:10px;
 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
 }
