@@ -54,7 +54,8 @@ input{
     outline: none;
     border: none;
     background: transparent;
-    
+    color: var(--white-color);
+    font-family: var(--fira-font);
 }
 
 textarea{
@@ -76,4 +77,9 @@ button{
     border:none;
     outline:none;
     cursor:pointer;
+}
+label{
+    font-family: var(--quicksand-font);
+    font-weight: 400;
+    color: var(--white-color);
 }
