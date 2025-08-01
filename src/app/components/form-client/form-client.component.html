@@ -1,28 +1,72 @@
 <h2>Add Client</h2>
-<form action="">
+<form [formGroup]="form" action="">
+    @let name = form.controls.name;
+    @let plan = form.controls.plan;
+    @let start_date = form.controls.start_date;
+    @let end_date = form.controls.end_date;
+    @let phone = form.controls.phone;
+
+
     <div class="name field">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" formControlName="name" required>
+
+        @if(name.invalid && name.touched){
+        <div class="error-message">
+            ❗
+        </div>
+        }
+
     </div>
 
     <div class="plan field">
         <label for="plan">Plan:</label>
-        <input type="text" id="plan" name="plan" required>
+        <input type="text" id="plan" name="plan" formControlName="plan" required>
+
+        @if(plan.invalid && plan.touched){
+        <div class="error-message">
+            ❗
+        </div>
+        }
     </div>
 
     <div class="start_date field">
         <label for="start_date">Start Date:</label>
-        <input type="date" id="start_date" name="start_date" required>
+        <input type="date" id="start_date" name="start_date" formControlName="start_date" required>
+
+        @if(start_date.invalid && start_date.touched){
+        <div class="error-message">
+            ❗
+        </div>
+        }
     </div>
 
     <div class="end_date field">
         <label for="end_date">End Date:</label>
-        <input type="date" id="end_date" name="end_date" required>
+        <input type="date" id="end_date" name="end_date" formControlName="end_date" required>
+
+        @if(end_date.invalid && end_date.touched){
+        <div class="error-message">
+            ❗
+        </div>
+        }
     </div>
 
     <div class="phone field">
         <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required>
+        <input type="tel" id="phone" name="phone" formControlName="phone" required>
+
+        @if (phone.invalid && phone.touched) {
+        <div class="erro_message">
+            @if(phone.hasError('required')){
+            <p>❗ Phone is required</p>
+            }@else{
+            <p>Please Enter a valid phone number</p>
+            }
+        </div>
+        }
+
+
     </div>
 
     <div class="buttons">
