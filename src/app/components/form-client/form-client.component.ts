@@ -40,6 +40,19 @@ export class FormClientComponent  {
 
   })
 
+  protected onSubmit():void{
+    if(this.form.valid){
+      const rawStart = this.form.get('start_date')!.value;
+      const rawEnd = this.form.get('end_date')!.value;
+
+      const startDate = typeof rawStart === "string" ? new Date(rawStart) : rawStart;
+      const endDate = typeof rawEnd === "string" ? new Date(rawEnd): rawEnd;
+
+      console.log('Start Date (as Date):', startDate);
+      console.log('End date:', endDate);
+    }
+  }
+
   protected closeForm(): void {
     this.service.hideForm();
   }
