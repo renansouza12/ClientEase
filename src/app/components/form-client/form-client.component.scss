@@ -1,13 +1,13 @@
 :host {
     background-color: #332f3778;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(15px);
     box-shadow: 0px 0px 0px 5px rgba(123, 123, 123, 0.2);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: fit-content;
+    height: 500px;
     width: 300px;
     padding: 15px 0px;
 
@@ -17,15 +17,49 @@
     transform: translate(-50%, -50%);
 
     form {
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: start;
-        height: 400px;
-        width: 300px;
+        height: 100%;
+        width: 100%;
         gap: 10px;
         padding: 0% 5%;
+
+        &::after,
+        &::before {
+            position: absolute;
+            content: "";
+            background: var(--red-color);
+            height: 1px;
+            width: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition:.7s ease-in-out;
+        }
+
+        &::after {
+            top: 0%;
+
+        }
+
+        &::before {
+            bottom: 0%;
+        }
+
+        &.invalid {
+            &::after,
+            &::before {
+                width: 50%;
+            }
+        }
+
+        .erro_message {
+            p {
+                font-size: 14px;
+                color: var(--red-color);
+            }
+        }
 
         .field {
             border-bottom: 1px solid var(--primary-color);
@@ -47,12 +81,36 @@
                 width: 100%;
                 display: grid;
                 place-content: center;
+                padding-left: 10px;
+            }
+
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                opacity: 0;
+                z-index: 1;
+            }
+
+            .calendar_icon {
+                position: absolute;
+                right: 16%;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none;
+            }
+
+
+            .error-message {
+                position: absolute;
+                top: 50%;
+                right: 5%;
+                transform: translateY(-50%);
             }
         }
 
 
         .buttons {
+            width: 100%;
             display: flex;
+            justify-content: center;
             align-items: center;
             gap: 1rem;
 
@@ -72,4 +130,10 @@
         }
     }
 
+}
+
+@media (max-width:425px) {
+    :host {
+        width: 90%;
+    }
 }
