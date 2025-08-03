@@ -9,18 +9,18 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './form-client.component.html',
   styleUrl: './form-client.component.scss'
 })
-export class FormClientComponent  {
+export class FormClientComponent {
 
   private service = inject(ClientService);
 
   private phoneRegex = /^\+?(\d{1,3})?[-.\s]?(\(?\d{2,3}\)?)[-.\s]?(\d{4,5})[-.\s]?(\d{4})$/;
 
   protected form = new FormGroup({
-    name: new FormControl<string>('',{
+    name: new FormControl<string>('', {
       nonNullable: true,
-        validators: [Validators.required]
+      validators: [Validators.required]
     }),
-    plan: new FormControl<string>('',{
+    plan: new FormControl<string>('', {
       nonNullable: true,
       validators: [Validators.required]
     }),
@@ -32,24 +32,37 @@ export class FormClientComponent  {
       nonNullable: true,
       validators: [Validators.required]
     }),
-    phone: new FormControl<string>('',{
-      nonNullable:true,
+    phone: new FormControl<string>('', {
+      nonNullable: true,
       validators: [Validators.required, Validators.pattern(this.phoneRegex)]
     })
 
 
   })
 
-  protected onSubmit():void{
-    if(this.form.valid){
-      const rawStart = this.form.get('start_date')!.value;
-      const rawEnd = this.form.get('end_date')!.value;
+  protected onSubmit(): void {
+    if (this.form.valid) {
 
-      const startDate = typeof rawStart === "string" ? new Date(rawStart) : rawStart;
-      const endDate = typeof rawEnd === "string" ? new Date(rawEnd): rawEnd;
+      const formValue = this.form.value;
 
-      console.log('Start Date (as Date):', startDate);
-      console.log('End date:', endDate);
+      const newClient = {
+        name: formValue.name!,
+        plan: formValue.plan!,
+        startDate: formValue.start_date!,
+        endDate: formValue.end_date!,
+        phoneNumber: formValue.phone!
+      };
+
+      const clientExist = this.service.getClients()
+        .some(client => client.name.toLowerCase() === newClient.name.toLowerCase());
+
+      if (clientExist) {
+        alert(`Client with name "${newClient.name}" already exists.`);
+        return;
+      }
+
+      this.service.addClient(newClient);
+      this.form.reset();
     }
   }
 
