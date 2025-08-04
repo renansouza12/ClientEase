@@ -191,3 +191,25 @@
         }
     }
 }
+
+
+@media (max-width:425px) {
+    :host {
+     
+        .client_viewed_bg{
+            height: 150px;
+            width: 90%;
+            border-radius: .5rem;
+
+            .client_viewed{
+                border-radius: .5rem;
+                justify-content: center;
+                .dates{
+                    p{
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+}
