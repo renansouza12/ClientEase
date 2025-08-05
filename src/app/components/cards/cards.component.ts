@@ -47,7 +47,11 @@ export class CardsComponent implements OnInit {
 
   protected handleDeleteClient(client: Client): void {
     this.clientService.removeClientByName(client.name);
+  }
 
+  protected handleEditClient(client:Client):void{
+    console.log("edit button clicked", client);
+    this.clientService.showForm(client);
   }
 
   protected addClient(): void {

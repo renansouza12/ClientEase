@@ -20,6 +20,7 @@ export class CardClientComponent {
 
   @Output() viewClientData: EventEmitter<Client> = new EventEmitter<Client>();
   @Output() deleteClient: EventEmitter<Client> = new EventEmitter<Client>();
+  @Output() editClient: EventEmitter<Client> = new EventEmitter<Client>();  
 
   protected option(): void {
     this.showOptions = !this.showOptions;
@@ -29,6 +30,9 @@ export class CardClientComponent {
     this.showOptions = false;
 
     this.viewClientData.emit(this.client);
+  }
+  protected edit():void{
+    this.editClient.emit(this.client);
   }
 
   protected delete():void{

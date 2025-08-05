@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NgControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/client.interface';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './form-client.component.html',
   styleUrl: './form-client.component.scss'
 })
-export class FormClientComponent {
+export class FormClientComponent implements OnInit {
 
   private service = inject(ClientService);
 
@@ -40,12 +41,36 @@ export class FormClientComponent {
 
   })
 
+  protected clientToEdit: Client | null = null;
+
+  ngOnInit(): void {
+
+    this.service.clientToEdit$.subscribe(client => {
+      this.clientToEdit = client;
+
+      if (client) {
+        this.form.patchValue({
+          name: client.name,
+          plan: client.plan,
+          start_date: client.startDate,
+          end_date: client.endDate,
+          phone: client.phoneNumber
+        });
+        this.form.get('name')?.disable();
+      } else {
+        this.form.reset();
+        this.form.get('name')?.enable();
+      }
+    })
+
+  }
+
   protected onSubmit(): void {
     if (this.form.valid) {
 
-      const formValue = this.form.value;
+      const formValue = this.form.getRawValue();
 
-      const newClient = {
+      const client = {
         name: formValue.name!,
         plan: formValue.plan!,
         startDate: formValue.start_date!,
@@ -53,15 +78,24 @@ export class FormClientComponent {
         phoneNumber: formValue.phone!
       };
 
-      const clientExist = this.service.getClients()
-        .some(client => client.name.toLowerCase() === newClient.name.toLowerCase());
+      if (this.clientToEdit) {
 
-      if (clientExist) {
-        alert(`Client with name "${newClient.name}" already exists.`);
-        return;
+        this.service.updateClient(client);
+      } else {
+
+        const clientExist = this.service.getClients()
+          .some(c => c.name.toLowerCase() === client.name.toLowerCase());
+
+        if (clientExist) {
+          alert(`Client with name "${client.name}" already exists.`);
+          return;
+        }
+
+        this.service.addClient(client);
       }
 
-      this.service.addClient(newClient);
+
+      this.service.addClient(client);
       this.form.reset();
     }
   }

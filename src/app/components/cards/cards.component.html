@@ -1,11 +1,18 @@
 <button class="add_btn" (click)="addClient()">+</button>
 <div class="cards" cdkDropList (cdkDropListDropped)="drop($event)">
   @for (client of clients; track client.name) {
-  <app-card-client [name]="client.name" [plan]="client.plan" [client]="client" [startDate]="client.startDate"
-    [endDate]="client.endDate" (viewClientData)="handleViewClientData($event)"
-    (deleteClient)="handleDeleteClient($event)" cdkDrag />
+  <app-card-client 
+  [name]="client.name"
+  [plan]="client.plan"
+  [client]="client"
+  [startDate]="client.startDate"
+  [endDate]="client.endDate"
+  (viewClientData)="handleViewClientData($event)"
+  (editClient)="handleEditClient($event)"
+  (deleteClient)="handleDeleteClient($event)" cdkDrag />
   }
 </div>
+
 
 <h3>{{clientActives}}</h3>
 

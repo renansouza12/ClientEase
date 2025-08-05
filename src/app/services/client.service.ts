@@ -81,9 +81,11 @@ export class ClientService {
   ]);
 
   private formVisible = new BehaviorSubject<boolean>(false);
+  private clientToEdit = new BehaviorSubject<Client | null>(null);
 
   clients$ = this.clientsSource.asObservable();
   formVisible$ = this.formVisible.asObservable();
+  clientToEdit$ = this.clientToEdit.asObservable();
 
   addClient(client: Client): void {
     const currentClients = this.clientsSource.getValue();
@@ -104,12 +106,30 @@ export class ClientService {
     this.clientsSource.next(updated);
   }
 
-  showForm(): void {
+  showForm(client?: Client): void {
+    if (client) {
+      this.clientToEdit.next(client); 
+    } else {
+      this.clientToEdit.next(null); 
+    }
     this.formVisible.next(true);
   }
 
-  hideForm(): void {
-    this.formVisible.next(false);
+  updateClient(updatedClient: Client): void {
+
+    const currentClients = this.getClients();
+    const index = currentClients.findIndex(c => c.name === updatedClient.name);
+
+    if (index !== -1) {
+      const updatedClients = [...currentClients];
+      updatedClients[index] = updatedClient;
+      this.clientsSource.next(updatedClients);
+
+    }
   }
 
-}
+    hideForm(): void {
+      this.formVisible.next(false);
+    }
+
+  }
