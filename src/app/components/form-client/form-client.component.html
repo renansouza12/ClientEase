@@ -64,10 +64,10 @@
         }
     </div>
     }
-
+ 
     <div class="buttons">
         @if (form.valid) {
-        <button type="submit" (click)="onSubmit()">Add Client</button>
+        <button type="submit" (click)="onSubmit()">{{buttonText}}</button>
         }
         <button type="button" (click)="closeForm()">Close</button>
     </div>

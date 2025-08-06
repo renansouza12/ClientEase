@@ -50,7 +50,6 @@ export class CardsComponent implements OnInit {
   }
 
   protected handleEditClient(client:Client):void{
-    console.log("edit button clicked", client);
     this.clientService.showForm(client);
   }
 

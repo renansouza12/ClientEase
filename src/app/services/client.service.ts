@@ -115,10 +115,10 @@ export class ClientService {
     this.formVisible.next(true);
   }
 
-  updateClient(updatedClient: Client): void {
+  updateClient(updatedClient: Client,originalName:string): void {
 
     const currentClients = this.getClients();
-    const index = currentClients.findIndex(c => c.name === updatedClient.name);
+    const index = currentClients.findIndex(c => c.name === originalName);
 
     if (index !== -1) {
       const updatedClients = [...currentClients];
