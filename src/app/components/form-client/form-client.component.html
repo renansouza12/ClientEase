@@ -12,10 +12,9 @@
         <input type="text" id="name" name="name" formControlName="name" required>
         @if(name.invalid && name.touched){
         <div class="error-message">
-            ❗
+           <i class="ri-alarm-warning-line"></i> 
         </div>
         }
-
     </div>
 
     <div class="plan field">
@@ -24,7 +23,7 @@
 
         @if(plan.invalid && plan.touched){
         <div class="error-message">
-            ❗
+            <i class="ri-alarm-warning-line"></i>
         </div>
         }
     </div>
@@ -35,7 +34,7 @@
         <span class="calendar_icon"><i class="ri-calendar-todo-fill"></i></span>
         @if(start_date.invalid && start_date.touched){
         <div class="error-message">
-            ❗
+            <i class="ri-alarm-warning-line"></i>
         </div>
         }
     </div>
@@ -46,7 +45,7 @@
         <span class="calendar_icon"><i class="ri-calendar-todo-fill"></i></span>
         @if(end_date.invalid && end_date.touched){
         <div class="error-message">
-            ❗
+            <i class="ri-alarm-warning-line"></i>
         </div>
         }
     </div>
@@ -58,7 +57,7 @@
     @if (phone.invalid && phone.touched) {
     <div class="erro_message">
         @if(phone.hasError('required')){
-        <p>❗ Phone is required</p>
+        <p><i class="ri-alarm-warning-line"></i> Phone is required</p>
         }@else{
         <p>Please Enter a valid phone number</p>
         }

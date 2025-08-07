@@ -57,27 +57,6 @@ export class ClientService {
       endDate: new Date("2025-09-05"),
       phoneNumber: "555-333-4444"
     },
-    {
-      name: "Heidi",
-      plan: "Family Plano 150R$",
-      startDate: new Date("2025-08-10"),
-      endDate: new Date("2025-09-10"),
-      phoneNumber: "555-777-8888"
-    },
-    {
-      name: "Ivan",
-      plan: "Normal Plano 100R$",
-      startDate: new Date("2025-08-15"),
-      endDate: new Date("2025-09-15"),
-      phoneNumber: "555-999-0000"
-    },
-    {
-      name: "Judy",
-      plan: "Family Plano 150R$",
-      startDate: new Date("2025-08-20"),
-      endDate: new Date("2025-09-20"),
-      phoneNumber: "555-222-3333"
-    }
   ]);
 
   private formVisible = new BehaviorSubject<boolean>(false);

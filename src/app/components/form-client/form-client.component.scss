@@ -55,6 +55,8 @@
         }
 
         .erro_message {
+            
+
             p {
                 font-size: 14px;
                 color: var(--red-color);
@@ -69,6 +71,8 @@
             display: flex;
             align-items: center;
             position: relative;
+
+            
 
 
             label {
@@ -103,6 +107,12 @@
                 top: 50%;
                 right: 5%;
                 transform: translateY(-50%);
+
+                i{
+                    color: red;
+                }
+
+
             }
         }
 
