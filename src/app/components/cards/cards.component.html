@@ -1,4 +1,4 @@
-<button class="add_btn" (click)="addClient()">+</button>
+<button class="add_btn" (click)="addClient()"><i class="ri-add-line"></i></button>
 <div class="cards" cdkDropList (cdkDropListDropped)="drop($event)">
   @for (client of clients; track client.name) {
   <app-card-client 
@@ -33,7 +33,7 @@
 
     </div>
 
-    <button class="close_btn" (click)="closeClient(i)" title="add a client">X</button>
+    <button class="close_btn" (click)="closeClient(i)" title="add a client"><i class="ri-close-circle-line"></i></button>
 
   </div>
   }

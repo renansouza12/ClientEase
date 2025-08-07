@@ -32,7 +32,7 @@
     <div class="start_date field">
         <label for="start_date">Start Date:</label>
         <input type="date" id="start_date" name="start_date" formControlName="start_date" required>
-        <span class="calendar_icon">📅</span>
+        <span class="calendar_icon"><i class="ri-calendar-todo-fill"></i></span>
         @if(start_date.invalid && start_date.touched){
         <div class="error-message">
             ❗
@@ -43,7 +43,7 @@
     <div class="end_date field">
         <label for="end_date">End Date:</label>
         <input type="date" id="end_date" name="end_date" formControlName="end_date" required>
-        <span class="calendar_icon">📅</span>
+        <span class="calendar_icon"><i class="ri-calendar-todo-fill"></i></span>
         @if(end_date.invalid && end_date.touched){
         <div class="error-message">
             ❗

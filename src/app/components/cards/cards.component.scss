@@ -26,9 +26,7 @@
     }
 
 
-
-
-    h3 {
+    h2 {
         color: var(--primary-color);
     }
 
@@ -170,9 +168,13 @@
             background: var(--background-color);
             color: var(--white-color);
             border-radius: 2rem;
-            padding: 1.7rem .7rem;
+            padding: 1.7rem .2rem;
             margin-left: 10px;
             border-bottom: 2px solid #2d2a30;
+
+            i{
+                font-size: 1.5rem;
+            }
         }
     }
 }
