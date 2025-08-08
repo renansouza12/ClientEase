@@ -4,10 +4,11 @@ import { AnnotationComponent } from './components/annotation/annotation.componen
 import { CardsComponent } from './components/cards/cards.component';
 import { FormClientComponent } from './components/form-client/form-client.component';
 import { ClientService } from './services/client.service';
+import { LinksAndSnippetsComponent } from './components/links-and-snippets/links-and-snippets.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,AnnotationComponent,CardsComponent,FormClientComponent],
+  imports: [RouterOutlet,AnnotationComponent,CardsComponent,FormClientComponent,LinksAndSnippetsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
