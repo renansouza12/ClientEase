@@ -11,7 +11,21 @@ export class SnippetCardComponent {
 
 
     protected snippetClick(){
+      const text = this.snippetText.trim();
 
+
+      const urlPattern =/^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
+
+      if(urlPattern.test(text)){
+        window.open(text,'_blank');
+      }else if(text){
+
+        navigator.clipboard.writeText(text)
+        .then(()=>{
+          console.log("Text copied to clipboard,",text)
+        })
+        .catch(err => console.error('Could not copy text:',err))
+      }
 
     }
 }
