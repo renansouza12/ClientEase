@@ -1,22 +1,25 @@
-:host{
-    height:100%;
+:host {
+    height: fit-content;
     width: 100%;
     border: 1px solid var(--primary-color);
     display: flex;
     flex-direction: column;
-    
-    input{
+
+    input {
         border-bottom: 1px solid var(--primary-color);
         color: var(--white-color);
         font-family: var(--fira-font);
         font-size: 15px;
         width: 100%;
-        padding: 5px .5rem ;
+        padding: 5px .5rem;
     }
-    textarea{
-        height: 100%;
-        width: 100%;
-        padding: 2% 10%;
+
+     textarea{
+        padding: 10% 20%;
+        font-size: 13px;
         text-align: justify;
+        height:100%;
+        width:100%;
     }
+
 }
