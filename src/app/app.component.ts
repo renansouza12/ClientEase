@@ -8,7 +8,7 @@ import { LinksAndSnippetsComponent } from './components/links-and-snippets/links
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,AnnotationComponent,CardsComponent,FormClientComponent,LinksAndSnippetsComponent],
+  imports: [AnnotationComponent,CardsComponent,FormClientComponent,LinksAndSnippetsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
