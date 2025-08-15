@@ -27,6 +27,15 @@
         padding: 2% 10%;
         cursor: pointer;
         overflow: hidden;
+
+        &::-webkit-scrollbar {
+            opacity: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            display: none;
+        }
+
     }
     button{
         background-color: #a892661a;
