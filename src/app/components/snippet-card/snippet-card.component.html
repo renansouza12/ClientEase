@@ -1,8 +1,11 @@
 <input class="snippet_title" type="text" placeholder="snippet title" />
 <textarea name="snippet_text" id="snippet_text" placeholder="Snippet..." (click)="snippetClick()"
-        [(ngModel)]="snippetText"></textarea>
+        [(ngModel)]="snippetText"
+        [ngClass]="{'expand': isExpanded}"
+        ></textarea>
 
 
- <button><i class="ri-arrow-down-wide-line"></i></button>              
+ <button (click)="expandTextArea()"><i class="ri-arrow-down-wide-line"></i></button>              
+
  
  
