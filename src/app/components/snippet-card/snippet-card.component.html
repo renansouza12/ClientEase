@@ -5,7 +5,13 @@
         ></textarea>
 
 
- <button (click)="expandTextArea()"><i class="ri-arrow-down-wide-line"></i></button>              
+ <button (click)="expandTextArea()">
+        @if (isExpanded) {
+                <i class="ri-arrow-up-wide-fill"></i>
+        }@else {
+                <i class="ri-arrow-down-wide-line"></i>
+        }
+</button>              
 
  
  
