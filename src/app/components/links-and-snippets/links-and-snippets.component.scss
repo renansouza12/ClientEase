@@ -18,12 +18,38 @@
         margin-top: 1rem;
         font-size: 14px;
         color: var(--White-color);
-        background-color: #333136;
-        padding: 3%;
+        background-color: #33313644;
         border-radius: .1rem;
+        height: 2rem;
+        width: 6rem;
+        padding: 4%;
         display: flex;
+        align-items: center;
+        z-index: 1;
         i{
             background-color: var(--primary-color);
+            transition: opacity .3s;
+        }
+        p{
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacaity .3s, transform .3s;
+            pointer-events: none;
+            position: absolute;
+
+        }
+
+        &:hover{
+            background-color: #333136;
+            p{
+                opacity: 1;
+                transform: translate(0px);
+                pointer-events: auto;
+            }
+
+            i{
+                opacity: 0;
+            }
         }
     }
 
