@@ -55,4 +55,22 @@
         bottom:-15% ;
         opacity: 1;
     }
+
+    .notification {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        &.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
 }

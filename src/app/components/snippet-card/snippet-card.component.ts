@@ -10,8 +10,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class SnippetCardComponent {
     protected snippetText!:string;
+    protected notificationText:string ="Notification message";
 
     protected isExpanded: boolean = false;
+    protected showNotification: boolean = false;
 
     protected snippetClick():void{
       const text = this.snippetText.trim();
@@ -22,7 +24,11 @@ export class SnippetCardComponent {
       }else if(text){
         navigator.clipboard.writeText(text)
         .then(()=>{
-          console.log("Text copied to clipboard,",text)
+          this.notificationText = "Text copied to clipboard!";
+          this.showNotification = true;
+          setTimeout(() =>{
+            this.showNotification = false
+          },2000)
         })
         .catch(err => console.error('Could not copy text:',err))
       }
