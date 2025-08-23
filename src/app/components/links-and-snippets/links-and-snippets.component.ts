@@ -8,5 +8,9 @@ import { SnippetCardComponent } from '../snippet-card/snippet-card.component';
   styleUrl: './links-and-snippets.component.scss'
 })
 export class LinksAndSnippetsComponent {
+  snippets: number[]= [0];
 
+  protected addSnippet():void{
+    this.snippets.push(this.snippets.length);
+  }
 }
