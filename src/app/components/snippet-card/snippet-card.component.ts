@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-snippet-card',
@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms';
   host:{'[class.expand]':'isExpanded'}
 })
 export class SnippetCardComponent {
+
+  @Input() snippet!:number;
+
     protected snippetText!:string;
     protected notificationText:string ="Notification message";
 
