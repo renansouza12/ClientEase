@@ -10,7 +10,11 @@ import { SnippetCardComponent } from '../snippet-card/snippet-card.component';
 export class LinksAndSnippetsComponent {
   snippets: number[]= [0];
 
-  protected addSnippet():void{
+  protected addSnippet():void{ 
     this.snippets.push(this.snippets.length);
+  }
+
+  protected deleteSnippet():void{
+    this.snippets.pop();
   }
 }
