@@ -1,7 +1,7 @@
 <h2>Link / Snippets</h2>
 <div class="snippet_buttons">
     <button (click)="addSnippet()"> <i class="ri-add-line"></i> <p>Add Snippet</p></button>
-    <button (click)="deleteSnippet()"><i class="ri-delete-row"></i><p>Delete Snippet</p></button>
+    <button (click)="deleteSnippet()"><i class="ri-close-line"></i><p>Delete Snippet</p></button>
 </div>
 <div class="snippets" cdkDropList (cdkDropListDropped)="drop($event)">
     @for (snippet of snippets; track snippet) {

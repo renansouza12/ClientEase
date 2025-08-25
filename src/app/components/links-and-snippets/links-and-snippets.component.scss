@@ -113,7 +113,6 @@
     }
 
     .snippets > .cdk-drag{
-        transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
         will-change: transform;
     } 
     .snippets > .cdk-drag-placeholder {

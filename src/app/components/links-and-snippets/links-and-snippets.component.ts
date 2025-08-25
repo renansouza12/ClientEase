@@ -19,7 +19,6 @@ export class LinksAndSnippetsComponent {
     this.snippets.pop();
   }
 
-
   protected drop(event: CdkDragDrop<number[]>) {
     moveItemInArray(this.snippets, event.previousIndex, event.currentIndex);
   }

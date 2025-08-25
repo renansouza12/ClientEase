@@ -38,7 +38,6 @@ export class SnippetCardComponent {
     }
     protected expandTextArea(): void {
       this.isExpanded = !this.isExpanded;
-      console.log("clicked");
     }
 
 }
