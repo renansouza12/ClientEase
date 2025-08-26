@@ -133,6 +133,10 @@
 @media (max-width: 550px) {
     :host {
         width: 90%;
+
+        .snippets{
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
     }
 
 }

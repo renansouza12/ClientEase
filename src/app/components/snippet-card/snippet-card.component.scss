@@ -60,18 +60,17 @@
 
     .notification {
         position: absolute;
-        top: -24%;
-        right: 50%;
-        transform: translate(50%, 50%);
+        top: -5%;
+        right: 0%;
+        transform: translate(-5%,-50%);
         background-color: #f8d7da;
         color: #721c24;
-        padding: 10px;
+        padding: 5px;
         border-radius: 3px;
-        z-index: 10;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-        display: flex ;
+        display: none;
         align-items: center;
+        z-index: 10;
+        transition: opacity 0.3s ease-in-out;
         width: 90%;
         i{
             margin-right: 10px;
@@ -80,10 +79,11 @@
         p {
             font-size: 12px;
             font-weight: 500;
+            width: 100%;
         }
 
         &.show {
-            opacity: 1;
+            display: flex;
             pointer-events: auto;
         }
     }
