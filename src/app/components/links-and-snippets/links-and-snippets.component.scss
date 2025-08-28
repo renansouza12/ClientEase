@@ -132,11 +132,30 @@
 
 @media (max-width: 550px) {
     :host {
-        width: 90%;
+        width: 100vw;
+        min-width: 0;
+        padding: 0 5vw;
 
-        .snippets{
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        h2 {
+            font-size: 16px;
+        }
+
+        .snippet_buttons {
+            padding: 5px 0;
+
+            button {
+                width: 100%;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+        }
+
+        .snippets {
+            height: 300px;
+            width: 100%;
+            padding: 5% 0%;
+            grid-template-columns: 1fr;
+            gap: 6px;
         }
     }
-
 }

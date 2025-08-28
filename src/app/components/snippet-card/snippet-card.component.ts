@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {CdkDrag ,CdkDragHandle } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-snippet-card',
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, CdkDragHandle,CdkDrag],
   templateUrl: './snippet-card.component.html',
   styleUrl: './snippet-card.component.scss',
-  host:{'[class.expand]':'isExpanded'}
+  host:{'[class.expand]':'isExpanded'} 
 })
 export class SnippetCardComponent {
 
@@ -19,7 +20,7 @@ export class SnippetCardComponent {
     protected showNotification: boolean = false;
 
     protected snippetClick():void{
-      const text = this.snippetText.trim();
+      const text = this.snippetText;
       const urlPattern =/^(https?:\/\/[^\s/$.?#].[^\s]*)$/i;
 
       if(urlPattern.test(text)){

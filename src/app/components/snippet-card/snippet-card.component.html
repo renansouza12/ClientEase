@@ -1,21 +1,20 @@
-<input class="snippet_title" type="text" placeholder="snippet title" />
-<textarea name="snippet_text" id="snippet_text" placeholder="Snippet..." (click)="snippetClick()"
-        [(ngModel)]="snippetText"
-        [ngClass]="{'expand': isExpanded}"
-        ></textarea>
-
-
- <button (click)="expandTextArea()">
-        @if (isExpanded) {
+<div cdkDrag>
+        <div cdkDragHandle class="drag-handle">
                 <i class="ri-arrow-up-wide-fill"></i>
-        }@else {
+        </div>
+        <input class="snippet_title" type="text" placeholder="snippet title" />
+        <textarea name="snippet_text" id="snippet_text" placeholder="Snippet..." (click)="snippetClick()"
+                [(ngModel)]="snippetText" [ngClass]="{'expand': isExpanded}"></textarea>
+        <button (click)="expandTextArea()">
+                @if (isExpanded) {
+                <i class="ri-arrow-up-wide-fill"></i>
+                }@else {
                 <i class="ri-arrow-down-wide-line"></i>
-        }
-</button>              
+                }
+        </button>
 
-<div class="notification" [ngClass]="{'show':showNotification}">
-  <i class="ri-spam-line"></i><p>{{notificationText}}</p>
+        <div class="notification" [ngClass]="{'show':showNotification}">
+                <i class="ri-spam-line"></i>
+                <p>{{notificationText}}</p>
+        </div>
 </div>
-
- 
- 

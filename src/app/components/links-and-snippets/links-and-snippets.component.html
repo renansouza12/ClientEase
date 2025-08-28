@@ -5,7 +5,7 @@
 </div>
 <div class="snippets" cdkDropList (cdkDropListDropped)="drop($event)">
     @for (snippet of snippets; track snippet) {
-        <app-snippet-card cdkDrag [snippet]="snippet"/>
+        <app-snippet-card  [snippet]="snippet"/>
     }
 </div>
 
