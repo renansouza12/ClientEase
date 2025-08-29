@@ -96,7 +96,7 @@
         height: 500px;
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
         gap: 5rem;
         overflow: hidden;
         overflow-y: auto;
@@ -112,10 +112,11 @@
         }
     }
 
-    .snippets > .cdk-drag{
+    .snippets>.cdk-drag {
         will-change: transform;
-    } 
-    .snippets > .cdk-drag-placeholder {
+    }
+
+    .snippets>.cdk-drag-placeholder {
         opacity: 0.3;
         border: 1px dashed var(--primary-color);
     }
@@ -153,9 +154,19 @@
         .snippets {
             height: 300px;
             width: 100%;
-            padding: 5% 0%;
+            padding: 5%;
             grid-template-columns: 1fr;
-            gap: 6px;
+
+            &::-webkit-scrollbar {
+                width: 3px;
+                background-color: var(--bg-color);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                width: 4px;
+                border-radius: 4px;
+                background-color: var(--primary-color);
+            }
         }
     }
 }

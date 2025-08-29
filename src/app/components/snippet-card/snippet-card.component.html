@@ -2,7 +2,7 @@
         <div cdkDragHandle class="drag-handle">
                 <i class="ri-draggable"></i>
         </div>
-        <input class="snippet_title" type="text" placeholder="snippet title" />
+        <input id="title" class="snippet_title" type="text" placeholder="snippet title" />
         <textarea name="snippet_text" id="snippet_text" placeholder="Snippet..." (click)="snippetClick()"
                 [(ngModel)]="snippetText" [ngClass]="{'expand': isExpanded}"></textarea>
         <button (click)="expandTextArea()">
