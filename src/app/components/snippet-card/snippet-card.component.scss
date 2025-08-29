@@ -7,8 +7,9 @@
     height: 80px;
     position: relative;
     transition: .4s;
+    transition: height .7s cubic-bezier(0.4, 0, 0.2, 1) ;
 
-                transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), overflow 0.4s;
+
     &.expand {
         height: 200px;
     }
