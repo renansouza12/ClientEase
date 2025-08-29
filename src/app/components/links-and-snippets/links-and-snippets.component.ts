@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import {  CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { SnippetCardComponent } from '../snippet-card/snippet-card.component';
 
 @Component({
   selector: 'app-links-and-snippets',
-  imports: [SnippetCardComponent,CdkDrag, CdkDropList],
+  imports: [SnippetCardComponent, CdkDropList],
   templateUrl: './links-and-snippets.component.html',
   styleUrl: './links-and-snippets.component.scss'
 })

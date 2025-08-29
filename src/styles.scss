@@ -83,3 +83,7 @@ label{
     font-weight: 400;
     color: var(--white-color);
 }
+
+.cdk-drag-preview{
+    display: none !important;
+}

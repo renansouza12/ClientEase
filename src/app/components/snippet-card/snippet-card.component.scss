@@ -9,18 +9,28 @@
     transition: .4s;
     transition: height .7s cubic-bezier(0.4, 0, 0.2, 1) ;
 
-
     &.expand {
         height: 200px;
     }
 
+    .cdk-drag{
+        transition: transform 250ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .cdk-drag-placeholder{
+        opacity: 0.3;
+        background: #a8926667;
+    }
+    
     .drag-handle {
         cursor: grab;
         touch-action: none;
         display: flex;
         align-items: center;
         padding: 4px;
-        background-color: red;
+
+        i {
+            color: var(--primary-color);
+        }
     }
 
     input {
@@ -37,13 +47,15 @@
         padding: 2% 10%;
         cursor: pointer;
         overflow: hidden;
+        height: 40px;
         width: 100%;
+        transition: .3s;
         min-width: 0;
         resize: none;
 
         &.expand{
             height: 200px;
-
+            
             textarea{
                 height: calc(100% - 42px);
                 overflow: auto;
