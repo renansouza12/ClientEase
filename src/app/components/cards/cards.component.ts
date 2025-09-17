@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CardClientComponent } from '../card-client/card-client.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Client } from '../../models/client.interface';
-import { ClientService } from '../../services/client.service';
+import { ClientService } from '../../services/clients/client.service';
 
 
 @Component({

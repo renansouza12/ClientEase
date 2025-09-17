@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ClientService } from '../../services/client.service';
+import { ClientService } from '../../services/clients/client.service';
 import { Client } from '../../models/client.interface';
 
 
