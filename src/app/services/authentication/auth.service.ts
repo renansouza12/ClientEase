@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
+import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, User ,onAuthStateChanged} from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { UserService } from '../users/user.service';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, shareReplay, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +24,13 @@ export class AuthService {
         map(user => user?.displayName ?? user?.email ?? '')
     );
 
-
+    
     constructor(){
         authState(this.auth).subscribe(user => this.userSubject.next(user));
 
-        this.user$.subscribe(()=>{
+        this.user$.subscribe(() => {
             this.loadingSubject.next(false);
-        });
+        })
     }
 
 
@@ -46,12 +46,16 @@ export class AuthService {
         if(!this.auth.currentUser)return;
         
         await updateProfile(this.auth.currentUser,{displayName:name});
-        this.userSubject.next(this.auth.currentUser);
     }
 
 
     logout(){
         return signOut(this.auth); 
+    }
+
+
+    get currentUser(){
+        return this.userSubject.value;
     }
 
 }

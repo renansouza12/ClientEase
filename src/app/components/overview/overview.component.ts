@@ -4,6 +4,8 @@ import { FormClientComponent } from '../form-client/form-client.component';
 import { CardsComponent } from '../cards/cards.component';
 import { AnnotationComponent } from '../annotation/annotation.component';
 import { ClientService } from '../../services/clients/client.service';
+import { AuthService } from '../../services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-overview',
@@ -12,15 +14,24 @@ import { ClientService } from '../../services/clients/client.service';
     styleUrl: './overview.component.scss'
 })
 export class OverviewComponent implements OnInit{
+
+    private auth = inject(AuthService);
+    private router = inject(Router);
+
     title = 'clients';
 
-  isFormClicked: boolean = false;
+    isFormClicked: boolean = false;
 
-  private clientService = inject(ClientService);
+    private clientService = inject(ClientService);
 
     ngOnInit(): void {
-      this.clientService.formVisible$.subscribe(visible =>{
-        this.isFormClicked = visible;
-      });
+        this.clientService.formVisible$.subscribe(visible =>{
+            this.isFormClicked = visible;
+        });
+    }
+
+
+    logout():void{
+        this.auth.logout().then(() => {this.router.navigate(['/login'])});
     }
 }
