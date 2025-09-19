@@ -30,7 +30,6 @@ export class OverviewComponent implements OnInit{
         });
     }
 
-
     logout():void{
         this.auth.logout().then(() => {this.router.navigate(['/login'])});
     }
