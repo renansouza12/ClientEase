@@ -1,1 +1,95 @@
+:host {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+
+  .loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    transform: rotate(45deg);
+
+    &::before {
+      content: '';
+      box-sizing: border-box;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      left: 0;
+      top: -24px;
+      animation: animloader 4s ease infinite;
+    }
+
+    &::after {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background: rgba(198, 174, 126, 0.85); // main beige tone
+      box-shadow: 0 0 10px rgba(198, 174, 126, 0.5); // golden glow
+      animation: animloader2 2s ease infinite;
+    }
+  }
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 0 24px rgba(198, 174, 126, 0),
+                24px 24px rgba(198, 174, 126, 0),
+                24px 48px rgba(198, 174, 126, 0),
+                0px 48px rgba(198, 174, 126, 0);
+  }
+  12% {
+    box-shadow: 0 24px #C6AE7E,
+                24px 24px rgba(198, 174, 126, 0),
+                24px 48px rgba(198, 174, 126, 0),
+                0px 48px rgba(198, 174, 126, 0);
+  }
+  25% {
+    box-shadow: 0 24px #C6AE7E,
+                24px 24px #C6AE7E,
+                24px 48px rgba(198, 174, 126, 0),
+                0px 48px rgba(198, 174, 126, 0);
+  }
+  37% {
+    box-shadow: 0 24px #C6AE7E,
+                24px 24px #C6AE7E,
+                24px 48px #C6AE7E,
+                0px 48px rgba(198, 174, 126, 0);
+  }
+  50% {
+    box-shadow: 0 24px #C6AE7E,
+                24px 24px #C6AE7E,
+                24px 48px #C6AE7E,
+                0px 48px #C6AE7E;
+  }
+  62% {
+    box-shadow: 0 24px rgba(198, 174, 126, 0),
+                24px 24px #C6AE7E,
+                24px 48px #C6AE7E,
+                0px 48px #C6AE7E;
+  }
+  75% {
+    box-shadow: 0 24px rgba(198, 174, 126, 0),
+                24px 24px rgba(198, 174, 126, 0),
+                24px 48px #C6AE7E,
+                0px 48px #C6AE7E;
+  }
+  87% {
+    box-shadow: 0 24px rgba(198, 174, 126, 0),
+                24px 24px rgba(198, 174, 126, 0),
+                24px 48px rgba(198, 174, 126, 0),
+                0px 48px #C6AE7E;
+  }
+  100% {
+    box-shadow: 0 24px rgba(198, 174, 126, 0),
+                24px 24px rgba(198, 174, 126, 0),
+                24px 48px rgba(198, 174, 126, 0),
+                0px 48px rgba(198, 174, 126, 0);
+  }
+}
 

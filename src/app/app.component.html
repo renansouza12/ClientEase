@@ -1,5 +1,5 @@
 @if(auth.loading$ | async){
-    <h1>It's loading bro</h1>
+    <span class="loader"></span>
 }
 @else{
     <router-outlet></router-outlet>
