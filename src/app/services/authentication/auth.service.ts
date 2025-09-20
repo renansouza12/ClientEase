@@ -20,7 +20,11 @@ export class AuthService {
     username$ = this.user$.pipe(
         map(user => user?.displayName ?? user?.email ?? '')
     );
-    
+
+    userPhoto$ = this.user$.pipe(
+        map(user => user?.photoURL ?? this.getRandomAvatar(user?.email || user?.displayName || 'default'))
+    );
+
     constructor(){
         
         this.user$.subscribe((user) => {
@@ -29,19 +33,23 @@ export class AuthService {
             }
         });
     }
-    
+
+    private getRandomAvatar(seed: string): string {
+        return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+    }
+
     async loginWithGoogle(){
         const provider = new GoogleAuthProvider();
         const result = await signInWithPopup(this.auth, provider);
         await this.userService.createUserData(result.user);
         return result;
     }
-    
+
     async updateUsername(name: string){
         if (!this.auth.currentUser) return;
         await updateProfile(this.auth.currentUser, {displayName: name});    
     }
-    
+
     logout(){
         return signOut(this.auth);
     }

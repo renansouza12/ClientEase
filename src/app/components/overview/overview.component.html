@@ -5,5 +5,20 @@
 @if (isFormClicked) {
     <app-form-client/>
 }
+<div class="profile">
 
-<button type="" (click)="logout()">Logout sir</button>
+    <div class="profile_image">
+        <img [src]="auth.userPhoto$ | async" [alt]="(auth.username$ | async) || 'User'"/>
+    </div>
+
+    <h2>{{auth.username$ | async}}</h2>
+
+
+    <div class ="btn_bg">
+        <button type="button" (click)="logout()">
+        <i class="ri-login-box-line"></i>
+        </button>
+    </div>
+
+
+</div>

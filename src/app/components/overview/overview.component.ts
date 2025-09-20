@@ -6,23 +6,22 @@ import { AnnotationComponent } from '../annotation/annotation.component';
 import { ClientService } from '../../services/clients/client.service';
 import { AuthService } from '../../services/authentication/auth.service';
 import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-overview',
-    imports: [AnnotationComponent,CardsComponent,FormClientComponent,LinksAndSnippetsComponent],
+    imports: [AnnotationComponent,CardsComponent,FormClientComponent,LinksAndSnippetsComponent,AsyncPipe],
     templateUrl: './overview.component.html',
     styleUrl: './overview.component.scss'
 })
 export class OverviewComponent implements OnInit{
 
-    private auth = inject(AuthService);
+    protected auth = inject(AuthService);
     private router = inject(Router);
 
-    title = 'clients';
+    private clientService = inject(ClientService);
 
     isFormClicked: boolean = false;
-
-    private clientService = inject(ClientService);
 
     ngOnInit(): void {
         this.clientService.formVisible$.subscribe(visible =>{
