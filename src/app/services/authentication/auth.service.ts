@@ -22,7 +22,12 @@ export class AuthService {
     );
 
     userPhoto$ = this.user$.pipe(
-        map(user => user?.photoURL ?? this.getRandomAvatar(user?.email || user?.displayName || 'default'))
+        map(user => {
+            if (user?.photoURL) {
+                return user.photoURL;
+            } else {
+                return 'https://i.pinimg.com/736x/96/6c/79/966c79016ded573c13aa6acec0f949ff.jpg';            }
+        })  
     );
 
     constructor(){
