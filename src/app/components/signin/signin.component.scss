@@ -14,10 +14,19 @@
     justify-content:center;
     align-items:center;
     gap: 1rem;
-   }
 
-  button{
-    background-color: white;
-    color: red;
+
+    input{
+
+      &.ng-invalid.ng-touched{
+        border: 1px solid red;
+      }
+    }
+
+    button{
+      background-color: white;
+      color: red;
+    }
+
   }
 }

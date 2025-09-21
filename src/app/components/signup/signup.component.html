@@ -1,17 +1,76 @@
 <h1>Sign UP </h1>
-<form (submit)="register()">
-    <input [(ngModel)]="name" type="text" name="name" placeholder="Full Name">
-    <input [(ngModel)]="email" type="email" name="email" placeholder="Email">
-    <input [(ngModel)]="password" type="password" name="password" placeholder="password">
-    <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password">
-    <button type="submit">register</button>
+<form [formGroup]="signupForm" (submit)="register()">
+
+    <div class="input_field">
+        <input 
+             formControlName="name"
+             type="text"
+             name="name"
+             [class.error-border]="signupForm.get('name')?.invalid && signupForm.get('name')?.touched" 
+             placeholder="Full Name"/>
+
+        @if (signupForm.get('name')?.invalid && signupForm.get('name')?.touched){
+            <div class="error">
+                <p>{{getFieldError('name')}}</p>           
+            </div>
+        }
+    </div>
+
+    
+    <div class="input_field">
+        <input 
+         formControlName="email"
+         type="email"
+         name="email" 
+         [class.error-border]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" 
+         placeholder="Email"/>
+
+        @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched){
+        <div class="error">
+            <p>{{getFieldError('email')}}</p>           
+        </div>
+        }
+    </div>
+
+     
+
+    <!-- Fix these inputs-->
+    <input [(ngModel)]="password" type="password" name="password" minlength="6" #passwordCtrl="ngModel" placeholder="password">
+    @if(passwordCtrl.invalid && passwordCtrl.touched){
+    <div class="error">
+
+        @if(passwordCtrl.errors?.['required']){
+        <p>Password is required</p>
+        }
+
+        @if(passwordCtrl.errors?.['minlength']){
+        <p>Passoword must be at least 6 characters</p>
+        }
+    </div>
+    } 
+    <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" minlength="6" #confirmPasswordCtrl="ngModel" placeholder="Confirm Password">
+    @if(confirmPasswordCtrl.invalid && emailCtrl.touched){
+    <div class="error">
+
+        @if(confirmPasswordCtrl.errors?.['required']){
+        <p>Password is required</p>
+        }
+
+
+        @if(passwordCtrl.errors?.['minlength']){
+        <p>Passoword must be at least 6 characters</p>
+        }
+    </div>
+    }
+
+    <button type="submit"  [disabled]="loginForm.invalid">register</button>
 </form>
 
 @if(erroMessage){
-    <p>{{erroMessage}}</p>
+<p>{{erroMessage}}</p>
 }
 @if(successMessage){
-    <p>{{successMessage}}</p>
+<p>{{successMessage}}</p>
 }
 
 <p>Already have an account? <a routerLink="/login">Sign in</a></p>

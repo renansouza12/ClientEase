@@ -1,9 +1,47 @@
 <h1>Sigin IN</h1>
 
-<form (submit)="login()">
-    <input [(ngModel)]="email" type="email" name="email" required placeholder="Email">
-    <input [(ngModel)]="password" type="password" name="password" required placeholder="Password">
-    <button type="submit">Sigin in</button>
+<form [formGroup]="loginForm" (submit)="login()">
+
+    <div class="input_field">
+    <input 
+    formControlName="email"
+    type="email"
+    name="email"
+    [class.error-border]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+    placeholder="Email"/>
+
+    @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+
+        <div class="error">
+            <p>{{getFieldErro('email')}}</p>
+            </div>
+    }
+
+
+    </div>
+
+    <div class="input_field">
+
+    <input  
+    formControlName="password"
+    type="password" 
+    name="password"   
+    placeholder="Password"
+    [class.error-border]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+    />
+
+
+    @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+
+        <div class="error">
+            <p>{{getFieldErro('password')}}</p>
+            </div>
+    } 
+    </div>
+
+
+    <button type="submit"  [disabled]="loginForm.invalid">Sigin in</button>
+
 </form>
 
 
@@ -12,6 +50,5 @@
 }
 
 <button type="button" (click)="loginWithGoogle()">Login With Google</button>
-
 
 <p>Don't have an account ? <a routerLink="/register">Sign Up</a> </p>

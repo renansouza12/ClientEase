@@ -1,30 +1,40 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/authentication/auth.service';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-signin',
-  imports: [FormsModule,RouterLink],
-  templateUrl: './signin.component.html',
-  styleUrl: './signin.component.scss'
+    selector: 'app-signin',
+    imports: [FormsModule,RouterLink, ReactiveFormsModule],
+    templateUrl: './signin.component.html',
+    styleUrl: './signin.component.scss'
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit{
     private auth = inject(AuthService);
     private router = inject(Router);
+    private fb = inject(FormBuilder);
 
     protected email!:string;
     protected password!:string;
     protected erroMessage!:string;
+    
+    protected loginForm!: FormGroup;
 
+    ngOnInit(): void {
+        this.loginForm = this.fb.group({
+            email:['',[Validators.required, Validators.email]],
+            password:['',[Validators.required,Validators.minLength(6)]],
+        });       
+    }
+    
 
     protected login(){
-       this.auth.login(this.email,this.password)
-       .then(userCredential => {
-           this.erroMessage = "";
-           this.router.navigate(['/overview'])
-       })
-       .catch(err => this.handleError(err));
+        this.auth.login(this.email,this.password)
+        .then(userCredential => {
+            this.erroMessage = "";
+            this.router.navigate(['/overview'])
+        })
+        .catch(err => this.handleError(err));
     }
 
     async loginWithGoogle(){
@@ -37,29 +47,15 @@ export class SigninComponent {
         }
 
     }
-    
+
     private handleError(err:any){
+        this.erroMessage = this.auth.getErroMessage(err.code);
+    }   
 
-        switch(err.code){
-            case 'auth/invalid-email':
-                this.erroMessage = 'Invalid email format';
-            break;
-            case 'auth/missing-email':
-                this.erroMessage = 'Missing email';
-            break;
-            case 'auth/invalid-credential':
-                this.erroMessage = 'Invalid Credential';
-            break;
-            case 'auth/user-not-found':
-                this.erroMessage = 'User not found';
-            break;
-            case 'auth/wrong-password':
-                this.erroMessage = 'Password Invalid'
-            break;
-            default:
-                this.erroMessage = 'Something went wrong';
-        }
 
+    protected getFieldErro(controlName:string): string | null{
+        const control = this.loginForm.get(controlName);
+        return this.auth.getFrontendErroMessage(control?.errors);
     }
 
 

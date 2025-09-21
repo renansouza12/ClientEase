@@ -71,4 +71,32 @@ export class AuthService {
     logout(){
         return signOut(this.auth);
     }
+
+
+    getErroMessage(code:string){
+        switch(code){
+            case 'auth/invalid-credential':
+                return 'Invalid email or password';
+            case 'auth/user-not-found':
+                return 'User not found';
+            case 'auth/wrong-password':
+                return 'Password is incorrect';
+            case 'auth/user-disabled':
+                return 'This account has been disabled';
+            default:
+                return 'Something went wrong, please try again';
+        }
+    }
+
+    getFrontendErroMessage(errors:any): string | null{
+        if (!errors) return null;
+
+        if (errors['required']) return 'This field is required';
+        if (errors['email']) return 'Invalid email format';
+        if (errors['minlength']) return `Minimum length is ${errors['minlength'].requiredLength}`;
+        if (errors['maxlength']) return `Maximum length is ${errors['maxlength'].requiredLength}`;
+        if (errors['pattern']) return 'Invalid format';
+
+        return null;
+    }
 }
