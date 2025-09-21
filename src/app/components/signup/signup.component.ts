@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../app/services/authentication/auth.service';
+import { AuthService } from '../../services/authentication/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -62,4 +62,4 @@ export class SignupComponent {
         }
     }
 
- 
+}

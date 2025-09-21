@@ -3,7 +3,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { OverviewComponent } from './components/overview/overview.component';
 import { loginGuard } from './guards/login/login.guard';
 import { authGuard } from './guards/auth/auth.guard';
-import { SignupComponent } from '../components/signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 export const routes: Routes = [
     {path:'login', component:SigninComponent, canActivate:[loginGuard]},
