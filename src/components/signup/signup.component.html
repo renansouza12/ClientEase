@@ -1,0 +1,17 @@
+<h1>Sign UP </h1>
+<form (submit)="register()">
+    <input [(ngModel)]="name" type="text" name="name" placeholder="Full Name">
+    <input [(ngModel)]="email" type="email" name="email" placeholder="Email">
+    <input [(ngModel)]="password" type="password" name="password" placeholder="password">
+    <input [(ngModel)]="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password">
+    <button type="submit">register</button>
+</form>
+
+@if(erroMessage){
+    <p>{{erroMessage}}</p>
+}
+@if(successMessage){
+    <p>{{successMessage}}</p>
+}
+
+<p>Already have an account? <a routerLink="/login">Sign in</a></p>

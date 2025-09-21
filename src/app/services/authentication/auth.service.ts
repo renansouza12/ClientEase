@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { UserService } from '../users/user.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { emit } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,8 @@ export class AuthService {
             if (user?.photoURL) {
                 return user.photoURL;
             } else {
-                return 'https://i.pinimg.com/736x/96/6c/79/966c79016ded573c13aa6acec0f949ff.jpg';            }
+                return '/user-profile.jpg';        
+            }
         })  
     );
 
@@ -53,6 +55,17 @@ export class AuthService {
     async updateUsername(name: string){
         if (!this.auth.currentUser) return;
         await updateProfile(this.auth.currentUser, {displayName: name});    
+    }
+
+    login(email:string, password:string){
+        return signInWithEmailAndPassword(this.auth,email,password);
+    }
+    
+    register(email:string, password:string){
+        return createUserWithEmailAndPassword(this.auth,email,password)
+        .then(cred => {
+            return  this.userService.createUserData(cred.user);
+        })
     }
 
     logout(){

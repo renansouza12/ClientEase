@@ -1,3 +1,17 @@
-<h1>Login Page</h1>
+<h1>Sigin IN</h1>
 
-<button type="" (click)="loginWithGoogle()">Login With Google</button>
+<form (submit)="login()">
+    <input [(ngModel)]="email" type="email" name="email" required placeholder="Email">
+    <input [(ngModel)]="password" type="password" name="password" required placeholder="Password">
+    <button type="submit">Sigin in</button>
+</form>
+
+
+@if(erroMessage){
+    <p id="erro">{{erroMessage}}</p>
+}
+
+<button type="button" (click)="loginWithGoogle()">Login With Google</button>
+
+
+<p>Don't have an account ? <a routerLink="/register">Sign Up</a> </p>

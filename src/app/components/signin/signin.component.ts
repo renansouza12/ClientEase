@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/authentication/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
-  imports: [],
+  imports: [FormsModule,RouterLink],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.scss'
 })
@@ -12,7 +13,19 @@ export class SigninComponent {
     private auth = inject(AuthService);
     private router = inject(Router);
 
+    protected email!:string;
+    protected password!:string;
     protected erroMessage!:string;
+
+
+    protected login(){
+       this.auth.login(this.email,this.password)
+       .then(userCredential => {
+           this.erroMessage = "";
+           this.router.navigate(['/overview'])
+       })
+       .catch(err => this.handleError(err));
+    }
 
     async loginWithGoogle(){
         try {
