@@ -5,58 +5,63 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 
 @Component({
     selector: 'app-signin',
-    imports: [FormsModule,RouterLink, ReactiveFormsModule],
+    imports: [FormsModule, RouterLink, ReactiveFormsModule],
     templateUrl: './signin.component.html',
     styleUrl: './signin.component.scss'
 })
-export class SigninComponent implements OnInit{
+export class SigninComponent implements OnInit {
     private auth = inject(AuthService);
     private router = inject(Router);
     private fb = inject(FormBuilder);
-
-    protected email!:string;
-    protected password!:string;
-    protected erroMessage!:string;
     
+   
+    protected errorMessage!: string; 
     protected loginForm!: FormGroup;
-
+    
     ngOnInit(): void {
         this.loginForm = this.fb.group({
-            email:['',[Validators.required, Validators.email]],
-            password:['',[Validators.required,Validators.minLength(6)]],
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required]]
         });       
     }
     
-
-    protected login(){
-        this.auth.login(this.email,this.password)
-        .then(userCredential => {
-            this.erroMessage = "";
-            this.router.navigate(['/overview'])
-        })
-        .catch(err => this.handleError(err));
-    }
-
-    async loginWithGoogle(){
+    protected async login(): Promise<void> {
+        this.errorMessage = '';
+        
+        if (this.loginForm.invalid) {
+            this.auth.markFormGroupTouched(this.loginForm);
+            return;
+        }
+        
+        const { email, password } = this.loginForm.value;
+        
+        console.log('📧 Attempting login with:', email);
+        
         try {
-            const userCredential = await this.auth.loginWithGoogle();
-
+            const userCredential = await this.auth.login(email, password);
+            this.errorMessage = "";
             this.router.navigate(['/overview']);
-        } catch (err) {
+        } catch (err: any) {
             this.handleError(err);
         }
-
     }
-
-    private handleError(err:any){
-        this.erroMessage = this.auth.getErroMessage(err.code);
+    
+    async loginWithGoogle(): Promise<void> {
+        try {
+            const userCredential = await this.auth.loginWithGoogle();
+            console.log('✅ Google login successful');
+            this.router.navigate(['/overview']);
+        } catch (err) {
+            console.error('❌ Google login failed:', err);
+            this.handleError(err);
+        }
+    }
+    
+    private handleError(err: any): void {
+        this.errorMessage = this.auth.getErrorMessage(err.code);
     }   
-
-
-    protected getFieldErro(controlName:string): string | null{
-        const control = this.loginForm.get(controlName);
-        return this.auth.getFrontendErroMessage(control?.errors);
-    }
-
-
+    
+    protected getFieldError(controlName: string): string | null {
+        return this.auth.getFieldError(this.loginForm, controlName);
+    } 
 }

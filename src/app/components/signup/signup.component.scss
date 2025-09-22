@@ -1,0 +1,13 @@
+:host{
+
+  form{
+    .input_field{
+      input{
+        &.error-border{
+          border:1px solid red;
+        }
+      }
+    }
+  }
+  
+}

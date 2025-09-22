@@ -4,37 +4,36 @@
 
     <div class="input_field">
     <input 
-    formControlName="email"
-    type="email"
-    name="email"
-    [class.error-border]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-    placeholder="Email"/>
+        formControlName="email"
+        type="email"
+        name="email"
+        [class.error-border]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        placeholder="Email"/>
 
     @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
 
         <div class="error">
-            <p>{{getFieldErro('email')}}</p>
+            <p>{{getFieldError('email')}}</p>
             </div>
     }
-
 
     </div>
 
     <div class="input_field">
 
     <input  
-    formControlName="password"
-    type="password" 
-    name="password"   
-    placeholder="Password"
-    [class.error-border]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        formControlName="password"
+        type="password" 
+        name="password"   
+        placeholder="Password"
+        [class.error-border]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
     />
 
 
     @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
 
         <div class="error">
-            <p>{{getFieldErro('password')}}</p>
+            <p>{{getFieldError('password')}}</p>
             </div>
     } 
     </div>
@@ -45,8 +44,8 @@
 </form>
 
 
-@if(erroMessage){
-    <p id="erro">{{erroMessage}}</p>
+@if(errorMessage){
+    <p id="erro">{{errorMessage}}</p>
 }
 
 <button type="button" (click)="loginWithGoogle()">Login With Google</button>

@@ -29,7 +29,13 @@ export class OverviewComponent implements OnInit{
         });
     }
 
-    logout():void{
-        this.auth.logout().then(() => {this.router.navigate(['/login'])});
-    }
+      async logout(): Promise<void> {
+          try {
+            await this.auth.logout();
+            this.router.navigate(['login']);
+
+          } catch (error) {
+              console.error("Logout Failed", error);
+          }           
+      }
 }

@@ -11,15 +11,5 @@ import { filter } from 'rxjs';
 })
 export class AppComponent {
     protected auth = inject(AuthService);
-    private router = inject(Router);
-
-    constructor() {
-        this.router.events.pipe(
-            filter(event => event instanceof NavigationEnd)
-        ).subscribe((event: NavigationEnd) => {
-            console.log('Navigation ended at:', event.url);
-        });
-    }
-
 }
 
