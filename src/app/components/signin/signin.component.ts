@@ -49,10 +49,8 @@ export class SigninComponent implements OnInit {
     async loginWithGoogle(): Promise<void> {
         try {
             const userCredential = await this.auth.loginWithGoogle();
-            console.log('✅ Google login successful');
             this.router.navigate(['/overview']);
         } catch (err) {
-            console.error('❌ Google login failed:', err);
             this.handleError(err);
         }
     }

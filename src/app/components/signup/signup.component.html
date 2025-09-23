@@ -1,4 +1,4 @@
-<h1>Sign UP </h1>
+<h1> Create an account</h1>
 <form [formGroup]="signupForm" (submit)="register()">
 
     <div class="input_field">
@@ -73,15 +73,16 @@
 </div>
 
 
-<button type="submit"  [disabled]="signupForm.invalid">register</button>
+<button type="submit"  [disabled]="signupForm.invalid">Create Account</button>
+<button type="button" (click)="signupWithGoogle()"> <img ngSrc="google-icon.png" height="20" width="20" priority>Sign up with Google</button>
 
 </form>
 
 @if(errorMessage){
-    <p>{{errorMessage}}</p>
+    <p id="erro">{{errorMessage}}</p>
 }
 @if(successMessage){
-    <p>{{successMessage}}</p>
+    <p id="success">{{successMessage}}</p>
 }
 
-<p>Already have an account? <a routerLink="/login">Sign in</a></p>
+<p>Already have an account? <a routerLink="/login"> Sign in</a></p>
