@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, User, sendPasswordResetEmail} from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { UserService } from '../users/user.service';
 import { BehaviorSubject, map, Observable } from 'rxjs';
@@ -82,6 +82,15 @@ export class AuthService {
         return cred;
     }
 
+
+    async forgotPassword(email:string):Promise<void>{
+        try {
+            await sendPasswordResetEmail(this.auth,email);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async logout(): Promise<void> {
         return signOut(this.auth);
     } 
@@ -102,6 +111,8 @@ export class AuthService {
                 return 'Password is too weak';
             case 'auth/invalid-email':
                 return 'Invalid email address';
+            case 'auth/too-many-requests':
+                return 'Too many password reset requests. Please try again later';
             default:
                 return 'Something went wrong, please try again';
         }
