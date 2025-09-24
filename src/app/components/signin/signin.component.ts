@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/authentication/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-signin',
-    imports: [FormsModule, RouterLink, ReactiveFormsModule],
+    imports: [FormsModule, RouterLink, ReactiveFormsModule,NgOptimizedImage],
     templateUrl: './signin.component.html',
     styleUrl: './signin.component.scss'
 })
