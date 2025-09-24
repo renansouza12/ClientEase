@@ -100,6 +100,34 @@
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      position:relative;
+      overflow:hidden;
+      transition:.6s;
+
+      &::after{
+        position:absolute;
+        content:"";
+        background:var(--primary-color);
+        height:100px;
+        width:100px;
+        border-radius:4rem;
+        right:-10%;
+        top:-5%;
+        transition:.6s;
+        z-index:-1;
+      }
+
+      &:hover::after{
+        height:100%;
+        width:100%;
+        transition:.6s;
+      }
+
+      &:hover{
+        background:var(--primary-color);
+        color:var(--white-color);
+        transition:.6s;
+      }
     }
 
   }
