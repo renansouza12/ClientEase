@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [],
+  imports: [FormsModule,ReactiveFormsModule,RouterLink],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
@@ -28,6 +28,8 @@ export class ForgotPasswordComponent implements OnInit{
 
 
     protected async sendResetEmail(): Promise<void>{
+        console.log("Send Button pressed");
+        
         this.errorMessage = '';
         this.successMessage = '';
 
