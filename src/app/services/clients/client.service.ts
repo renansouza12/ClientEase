@@ -1,88 +1,123 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject, Observable, switchMap, map } from 'rxjs';
+import { 
+  Firestore, 
+  collection, 
+  collectionData, 
+  doc, 
+  addDoc, 
+  updateDoc, 
+  deleteDoc, 
+  query, 
+  orderBy,
+  Timestamp,
+  getDocs,
+  writeBatch
+} from '@angular/fire/firestore';
 import { Client } from '../../models/client.interface';
+import { AuthService } from '../../services/authentication/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-
-  private clientsSource = new BehaviorSubject<Client[]>([
-    {
-      name: "Alice",
-      plan: "Family Plano 150R$",
-      startDate: new Date("2025-07-05"),
-      endDate: new Date("2025-08-05"),
-      phoneNumber: "123-456-7890"
-    },
-    {
-      name: "Bob",
-      plan: "Normal Plano 100R$",
-      startDate: new Date("2025-07-10"),
-      endDate: new Date("2025-08-10"),
-      phoneNumber: "987-654-3210"
-    },
-    {
-      name: "Charlie",
-      plan: "Normal Plano 100R$",
-      startDate: new Date("2025-07-15"),
-      endDate: new Date("2025-08-15"),
-      phoneNumber: "555-123-4567"
-    },
-    {
-      name: "David",
-      plan: "Family Plano 150R$",
-      startDate: new Date("2025-07-20"),
-      endDate: new Date("2025-08-20"),
-      phoneNumber: "555-987-6543"
-    },
-    {
-      name: "Eve",
-      plan: "Normal Plano 100R$",
-      startDate: new Date("2025-07-25"),
-      endDate: new Date("2025-08-25"),
-      phoneNumber: "555-555-5555"
-    },
-    {
-      name: "Frank",
-      plan: "Family Plano 150R$",
-      startDate: new Date("2025-07-30"),
-      endDate: new Date("2025-08-30"),
-      phoneNumber: "555-111-2222"
-    },
-    {
-      name: "Grace",
-      plan: "Normal Plano 100R$",
-      startDate: new Date("2025-08-05"),
-      endDate: new Date("2025-09-05"),
-      phoneNumber: "555-333-4444"
-    },
-  ]);
-
+  private firestore = inject(Firestore);
+  private authService = inject(AuthService);
+  
   private formVisible = new BehaviorSubject<boolean>(false);
   private clientToEdit = new BehaviorSubject<Client | null>(null);
-
-  clients$ = this.clientsSource.asObservable();
+  
   formVisible$ = this.formVisible.asObservable();
   clientToEdit$ = this.clientToEdit.asObservable();
+  
+  clients$: Observable<Client[]> = this.authService.user$.pipe(
+    switchMap(user => {
+      if (!user) return [];
+      
+      const clientsRef = collection(this.firestore, `users/${user.uid}/clients`);
+      const clientsQuery = query(clientsRef, orderBy('order', 'asc'));
+      
+      return collectionData(clientsQuery, { idField: 'id' }).pipe(
+        map((clients: any[]) => 
+          clients.map(client => ({
+            ...client,
+            startDate: client.startDate?.toDate() || new Date(),
+            endDate: client.endDate?.toDate() || new Date()
+          }))
+        )
+      );
+    })
+  );
 
-  addClient(client: Client): void {
-    const currentClients = this.clientsSource.getValue();
-    const exists = currentClients.some(c => c.name === client.name);
-
-    if (!exists) {
-      const updatedClients = [...currentClients, client];
-      this.clientsSource.next(updatedClients);
+  async addClient(client: Client): Promise<void> {
+    const user = this.authService.getCurrentUser();
+    if (!user) {
+      throw new Error('User must be logged in to add clients');
     }
+
+    const currentClients = await this.getClientsOnce();
+    const maxOrder = currentClients.length > 0 
+      ? Math.max(...currentClients.map(c => c.order || 0))
+      : -1;
+
+    const clientsRef = collection(this.firestore, `users/${user.uid}/clients`);
+    
+    const clientData = {
+      ...client,
+      order: maxOrder + 1,
+      startDate: Timestamp.fromDate(client.startDate),
+      endDate: Timestamp.fromDate(client.endDate)
+    };
+    
+    await addDoc(clientsRef, clientData);
   }
 
-  getClients(): Client[] {
-    return this.clientsSource.getValue();
+  async updateClient(updatedClient: Client, originalName?: string): Promise<void> {
+    const user = this.authService.getCurrentUser();
+    if (!user || !updatedClient.id) {
+      throw new Error('User must be logged in and client must have an ID');
+    }
+
+    const clientRef = doc(this.firestore, `users/${user.uid}/clients/${updatedClient.id}`);
+    
+    const clientData = {
+      name: updatedClient.name,
+      plan: updatedClient.plan,
+      phoneNumber: updatedClient.phoneNumber,
+      startDate: Timestamp.fromDate(updatedClient.startDate),
+      endDate: Timestamp.fromDate(updatedClient.endDate)
+    };
+    
+    await updateDoc(clientRef, clientData);
   }
 
-  removeClientByName(nameToRemove: string) {
-    const updated = this.getClients().filter(client => client.name !== nameToRemove);
-    this.clientsSource.next(updated);
+  async removeClient(clientId: string): Promise<void> {
+    const user = this.authService.getCurrentUser();
+    if (!user) {
+      throw new Error('User must be logged in to delete clients');
+    }
+
+    const clientRef = doc(this.firestore, `users/${user.uid}/clients/${clientId}`);
+    await deleteDoc(clientRef);
+  }
+
+  // Update clients order after drag and drop
+  async updateClientsOrder(clients: Client[]): Promise<void> {
+    const user = this.authService.getCurrentUser();
+    if (!user) {
+      throw new Error('User must be logged in to update order');
+    }
+
+    const batch = writeBatch(this.firestore);
+    
+    clients.forEach((client, index) => {
+      if (client.id) {
+        const clientRef = doc(this.firestore, `users/${user.uid}/clients/${client.id}`);
+        batch.update(clientRef, { order: index });
+      }
+    });
+
+    await batch.commit();
   }
 
   showForm(client?: Client): void {
@@ -94,21 +129,22 @@ export class ClientService {
     this.formVisible.next(true);
   }
 
-  updateClient(updatedClient: Client,originalName:string): void {
-
-    const currentClients = this.getClients();
-    const index = currentClients.findIndex(c => c.name === originalName);
-
-    if (index !== -1) {
-      const updatedClients = [...currentClients];
-      updatedClients[index] = updatedClient;
-      this.clientsSource.next(updatedClients);
-
-    }
+  hideForm(): void {
+    this.formVisible.next(false);
   }
 
-    hideForm(): void {
-      this.formVisible.next(false);
-    }
+  private async getClientsOnce(): Promise<Client[]> {
+    const user = this.authService.getCurrentUser();
+    if (!user) return [];
 
+    const clientsRef = collection(this.firestore, `users/${user.uid}/clients`);
+    const snapshot = await getDocs(clientsRef);
+    
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      startDate: doc.data()['startDate']?.toDate() || new Date(),
+      endDate: doc.data()['endDate']?.toDate() || new Date()
+    })) as Client[];
   }
+}

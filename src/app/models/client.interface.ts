@@ -1,7 +1,9 @@
 export interface Client {
-  name: string;
-  plan: string;
-  startDate: Date;
-  endDate: Date;
-  phoneNumber?: string; 
+    id?:string,
+    name: string;
+    plan: string;
+    startDate: Date;
+    endDate: Date;
+    phoneNumber?: string; 
+    order?:number;
 }

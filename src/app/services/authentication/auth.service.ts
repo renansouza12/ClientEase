@@ -12,6 +12,11 @@ export class AuthService {
     private auth = inject(Auth);
     private firestore = inject(Firestore);
     private userService = inject(UserService);
+
+
+    getCurrentUser(){
+        return this.auth.currentUser;
+    }
     
     private loadingSubject = new BehaviorSubject<boolean>(true);
     loading$ = this.loadingSubject.asObservable();
