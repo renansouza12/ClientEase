@@ -14,10 +14,12 @@ export class SigninComponent implements OnInit {
     private auth = inject(AuthService);
     private router = inject(Router);
     private fb = inject(FormBuilder);
-    
-   
+
     protected errorMessage!: string; 
     protected loginForm!: FormGroup;
+
+    protected isLoginLoading:boolean = false;
+    protected isGoogleLoading:boolean = false; 
     
     ngOnInit(): void {
         this.loginForm = this.fb.group({
@@ -34,9 +36,8 @@ export class SigninComponent implements OnInit {
             return;
         }
         
+        this.isLoginLoading = true;
         const { email, password } = this.loginForm.value;
-        
-        console.log('📧 Attempting login with:', email);
         
         try {
             const userCredential = await this.auth.login(email, password);
@@ -44,15 +45,20 @@ export class SigninComponent implements OnInit {
             this.router.navigate(['/overview']);
         } catch (err: any) {
             this.handleError(err);
+        }finally{
+            this.isLoginLoading = false;
         }
     }
     
     async loginWithGoogle(): Promise<void> {
+        this.isGoogleLoading = true;
         try {
             const userCredential = await this.auth.loginWithGoogle();
             this.router.navigate(['/overview']);
         } catch (err) {
             this.handleError(err);
+        }finally{
+            this.isGoogleLoading = false;
         }
     }
     

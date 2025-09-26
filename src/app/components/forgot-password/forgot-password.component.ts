@@ -17,7 +17,8 @@ export class ForgotPasswordComponent implements OnInit{
     protected forgotPasswordForm!:FormGroup;
     protected errorMessage!:string;
     protected successMessage!:string;
-    protected isLoading = false;
+
+    protected isLoading:boolean = false;
     
 
     ngOnInit():void{
@@ -28,7 +29,6 @@ export class ForgotPasswordComponent implements OnInit{
 
 
     protected async sendResetEmail(): Promise<void>{
-        console.log("Send Button pressed");
         
         this.errorMessage = '';
         this.successMessage = '';

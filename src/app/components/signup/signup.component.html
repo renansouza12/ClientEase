@@ -81,8 +81,24 @@
 </div>
 
 
-<button type="submit"  [disabled]="signupForm.invalid">Create Account</button>
-<button type="button" (click)="signupWithGoogle()"> <img ngSrc="google-icon.png" height="20" width="20" priority>Sign up with Google</button>
+<button type="submit"  [disabled]="signupForm.invalid || isRegisterLoading">
+    @if(isRegisterLoading){
+        <div class="loader"></div>
+    }@else{
+        Create Account
+    }
+</button>
+
+<button type="button" (click)="signupWithGoogle()"> 
+
+    @if(isGoogleLoading){
+        <div class="loader"></div>
+    }@else{
+        <img ngSrc="google-icon.png" height="20" width="20" priority>
+        Sign up with Google
+    }
+
+</button>
 
 </form>
 

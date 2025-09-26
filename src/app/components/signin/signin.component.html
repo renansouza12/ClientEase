@@ -2,46 +2,54 @@
 
 <form [formGroup]="loginForm" (submit)="login()">
 
-    <div class="input_field">
-    <input 
-        formControlName="email"
-        type="email"
-        name="email"
-        [class.error-border]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
-        placeholder="Email"/>
+<div class="input_field">
+<input 
+    formControlName="email"
+    type="email"
+    name="email"
+    [class.error-border]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+    placeholder="Email"/>
 
-    @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
+@if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
 
-        <div class="error">
-            <p>{{getFieldError('email')}}</p>
-            </div>
-    }
+    <div class="error">
+        <p>{{getFieldError('email')}}</p>
+        </div>
+}
 
-    </div>
+</div>
 
-    <div class="input_field">
+<div class="input_field">
 
-    <input  
-        formControlName="password"
-        type="password" 
-        name="password"   
-        placeholder="Password"
-        [class.error-border]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+<input  
+    formControlName="password"
+    type="password" 
+    name="password"   
+    placeholder="Password"
+    [class.error-border]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
     />
 
 
-    @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+@if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
 
-        <div class="error">
-            <p>{{getFieldError('password')}}</p>
-            </div>
-    } 
-    </div>
+    <div class="error">
+        <p>{{getFieldError('password')}}</p>
+        </div>
+} 
+</div>
 
 
-    <button type="submit"  [disabled]="loginForm.invalid">Sigin in</button>
-    
-    <a routerLink="/forgot-password">Forgot your password</a>
+<button type="submit"  [disabled]="loginForm.invalid || isLoginLoading">
+
+        @if(isLoginLoading){
+            <div class="loader"></div>
+        }@else{
+            Sign In
+        }
+
+</button>
+
+<a routerLink="/forgot-password">Forgot your password</a>
 </form>
 
 
@@ -49,6 +57,13 @@
     <p id="erro">{{errorMessage}}</p>
 }
 
-<button type="button" (click)="loginWithGoogle()"><img ngSrc="google-icon.png" height="20" width="20" priority>Login With Google</button>
+<button type="button" (click)="loginWithGoogle()">   
+    @if(isGoogleLoading){
+        <div class="loader"></div>
+    }@else{
+        <img ngSrc="google-icon.png" height="20" width="20" priority>
+            Login with Google
+    }
+</button>
 
 <p>Don't have an account ? <a routerLink="/register">Sign Up</a> </p>

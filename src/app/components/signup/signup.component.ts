@@ -30,6 +30,9 @@ export class SignupComponent implements OnInit {
     protected signupForm!: FormGroup;
     protected errorMessage!: string;
     protected successMessage!: string;
+    
+    protected isRegisterLoading:boolean = false;
+    protected isGoogleLoading:boolean = false;
 
     ngOnInit(): void {
         this.signupForm = this.fb.group({
@@ -54,7 +57,8 @@ export class SignupComponent implements OnInit {
         this.auth.markFormGroupTouched(this.signupForm);
         return;
     }
-
+    
+    this.isRegisterLoading = true;
     const { name, email, password } = this.signupForm.value;
 
     this.auth.register(email, password,name)
@@ -62,16 +66,21 @@ export class SignupComponent implements OnInit {
         .then(() => {
             this.successMessage = 'account created successfully! you can now log in';
             this.signupForm.reset();
+            this.isRegisterLoading = false;
         })
         .catch(err => this.handleError(err));
+
   }
 
     async signupWithGoogle(): Promise<void> {
+        this.isGoogleLoading = true;
         try {
             const userCredential = await this.auth.loginWithGoogle();
             this.router.navigate(['/overview']);
         } catch (err) {
             this.handleError(err);
+        }finally{
+            this.isGoogleLoading = false
         }
     }
 
