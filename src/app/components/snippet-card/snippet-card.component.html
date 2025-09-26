@@ -1,20 +1,31 @@
 <div cdkDrag>
-        <div cdkDragHandle class="drag-handle">
-                <i class="ri-draggable"></i>
-        </div>
-        <input id="title" class="snippet_title" type="text" placeholder="snippet title" />
-        <textarea name="snippet_text" id="snippet_text" placeholder="Snippet..." (click)="snippetClick()"
-                [(ngModel)]="snippetText" [ngClass]="{'expand': isExpanded}"></textarea>
-        <button (click)="expandTextArea()">
-                @if (isExpanded) {
-                <i class="ri-arrow-up-wide-fill"></i>
-                }@else {
-                <i class="ri-arrow-down-wide-line"></i>
-                }
-        </button>
-
-        <div class="notification" [ngClass]="{'show':showNotification}">
-                <i class="ri-spam-line"></i>
-                <p>{{notificationText}}</p>
-        </div>
+    <div cdkDragHandle class="drag-handle">
+        <i class="ri-draggable"></i>
+    </div>
+    <input 
+        id="title" 
+        class="snippet_title" 
+        type="text" 
+        placeholder="snippet title"
+        [(ngModel)]="snippetTitle"
+        (ngModelChange)="onTitleChange($event)" />
+    <textarea 
+        name="snippet_text" 
+        id="snippet_text" 
+        placeholder="Snippet..." 
+        (click)="snippetClick()"
+        [(ngModel)]="snippetText"
+        (ngModelChange)="onTextChange($event)"
+        [ngClass]="{'expand': isExpanded}"></textarea>
+    <button (click)="expandTextArea()">
+        @if (isExpanded) {
+            <i class="ri-arrow-up-wide-fill"></i>
+        } @else {
+            <i class="ri-arrow-down-wide-line"></i>
+        }
+    </button>
+    <div class="notification" [ngClass]="{'show':showNotification}">
+        <i class="ri-spam-line"></i>
+        <p>{{notificationText}}</p>
+    </div>
 </div>

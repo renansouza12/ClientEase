@@ -4,8 +4,7 @@
     <button (click)="deleteSnippet()"><i class="ri-close-line"></i><p>Delete Snippet</p></button>
 </div>
 <div class="snippets" cdkDropList (cdkDropListDropped)="drop($event)">
-    @for (snippet of snippets; track snippet) {
-        <app-snippet-card  [snippet]="snippet"/>
+    @for (snippet of snippets; track trackBySnippetId($index, snippet)) {
+        <app-snippet-card [snippet]="snippet"/>
     }
 </div>
-
