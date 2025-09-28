@@ -31,7 +31,6 @@ export class SnippetCardComponent implements OnInit,OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['snippet'] && !changes['snippet'].firstChange) {
-            // Only update if the expansion state changed from Firebase
             if (changes['snippet'].currentValue.isExpanded !== this.isExpanded) {
                 this.isExpanded = changes['snippet'].currentValue.isExpanded || false;
             }

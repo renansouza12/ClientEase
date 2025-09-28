@@ -1,121 +1,130 @@
 @mixin flex($direction: row) {
   display: flex;
   flex-direction: $direction;
+  justify-content: center;
 }
 
 :host{
+  display: flex;
+  justify-content:space-between;
+  border: 1px solid var(--primary-color);
+  height: 80px; 
+  width: 23vw;
+  padding: 10px 1rem;
+  gap: 2rem;
+  position:relative;
+
+  .client_information{
+    height: 100%;
+    @include flex(column);
+
+    h2{
+      font-size: 18px;
+    }
+    p{
+      font-size: 14px;
+    }
+  }
+  .dates{
+    @include flex(column);
+    justify-content: center;
+    align-items: center;
+    p{
+      font-size: 13px;
+
+      &:nth-child(1){
+        color: var(--green-color);
+      }
+
+      &:nth-child(3){
+        color: var(--red-color);
+      }
+    }
+  }
+
+  .option{
+    position:absolute;
+    top:5%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index: 1;
+
+    color: var(--white-color);
+    border-bottom: 1px solid var(--option-bottom);
+    border-left:1px solid var(--option-left);
+    background:#423e47;
+    padding:2px 10px;
+    border-radius:.2rem;
+    transition: .2s ease-in-out;
+    opacity:0;
+
+    &:active{
+      border-bottom: 0px solid var(--option-bottom);
+      border-left:0px solid var(--option-left);
+    }
+  }
+  &:hover .option{
+    opacity:1;
+    top:18%;
+  }
+
+  .card_options{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    background-color: #332f375f;
+    backdrop-filter: blur(1px);
+    padding: 5px 10px;
     display: flex;
-    border: 1px solid var(--primary-color);
-    height: 80px; 
-    width: 300px;  
-    min-width: 250px;
-    max-width: 100%;
-    padding: 10px 2rem;
-    gap: 2rem;
-    position:relative;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 
-    .client_information{
-        height: 100%;
-        @include flex(column);
 
-        h2{
-            font-size: 18px;
-        }
-        p{
-            font-size: 14px;
-        }
+    button{
+      color: var(--white-color);
+      padding: 5px;
+      border-radius: 2px;
+      background-color: var(--primary-color);
+      border: 1px solid var(--option-btn-border);
+      border-bottom: 2px solid var(--option-btn-bottom);
+
+
+
+      &:active{
+        border-bottom: 0px solid #8e7b56;
+      }
+
     }
-    .dates{
-        @include flex(column);
-        justify-content: center;
-        align-items: center;
-        p{
-            font-size: 13px;
-
-            &:nth-child(1){
-                color: var(--green-color);
-            }
-
-            &:nth-child(3){
-               color: var(--red-color);
-            }
-        }
-    }
-
-    .option{
-        position:absolute;
-        top:5%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        z-index: 1;
-
-        color: var(--white-color);
-        border-bottom: 1px solid var(--option-bottom);
-        border-left:1px solid var(--option-left);
-        background:#423e47;
-        padding:2px 10px;
-        border-radius:.2rem;
-        transition: .2s ease-in-out;
-        opacity:0;
-
-        &:active{
-            border-bottom: 0px solid var(--option-bottom);
-            border-left:0px solid var(--option-left);
-        }
-    }
-    &:hover .option{
-        opacity:1;
-        top:18%;
-    }
-
-    .card_options{
-        position: absolute;
-        top: 60%;
-        left: 50%;
-        transform:translate(-50%,-50%);
-        background-color: #332f375f;
-        backdrop-filter: blur(1px);
-        padding: 5px 10px;
-        display: flex;
-        gap: 10px;
-        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-
-
-        button{
-            color: var(--white-color);
-            padding: 5px;
-            border-radius: 2px;
-            background-color: var(--primary-color);
-            border: 1px solid var(--option-btn-border);
-            border-bottom: 2px solid var(--option-btn-bottom);
-    
-
-            
-            &:active{
-                border-bottom: 0px solid #8e7b56;
-            }
-            
-        }
-    }
+  }
 }
 
-@media (max-width:700px) {
-    :host{
-        padding:10px;
-        width: 100%;
+@media (max-width:950px) {
+  :host{
+    padding: 5px;
+    gap: 0;
+  }
+}
 
-        .client_information{
-            h2{
-                font-size:15px;
-            }
-        }
 
+@media (max-width:768px) {
+  :host{
+    padding:10px;
+    width: 100%;
+
+    .client_information{
+      h2,p{
+        font-size:1rem;
+      }
+      
     }
+
+  }
 }
 
 @media (max-width:550px) {
-    :host{
-       justify-content: space-between; 
-       
-    }
+  :host{
+    justify-content: space-between; 
+
+  }
 }
