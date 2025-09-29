@@ -221,9 +221,6 @@ src/
 |   |   ├── annotation.interface.ts
 |   |   ├── client.interface.ts
 |   |   └── snippet.interface.ts
-│   ├── services/
-│   │   └── authentication/
-│   │       └── auth.service.ts
 │   └── services/
 |       ├── annotations/
 |       ├── authentication/
