@@ -97,7 +97,7 @@ The application is currently functional for core tasks, though additional featur
 *Quick access to frequently used text and links*
 
 ### Annotations
-![Annotations Area](https://i.ibb.co/v4bttjM8/note.png)
+![Annotations Area](https://i.imgur.com/uZpvzab.png)
 *Freeform text area for notes*
 
 ## 🛠️ Tech Stack
