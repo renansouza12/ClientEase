@@ -1,4 +1,4 @@
-# CrossFit Studio Manager
+# ClientEase
 
 A streamlined client management system designed specifically for small fitness studios, built with Angular and Firebase.
 
@@ -127,8 +127,8 @@ The application is currently functional for core tasks, though additional featur
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/crossfit-studio-manager.git
-cd crossfit-studio-manager
+git clone https://github.com/yourusername/ClientEase.git
+cd ClientEase
 ```
 
 2. Install dependencies
