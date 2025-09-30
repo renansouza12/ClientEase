@@ -2,7 +2,7 @@
 
 A streamlined client management system designed specifically for small fitness studios, built with Angular and Firebase.
 
-![Dashboard Overview](./screenshots/dashboard.png)
+![Dashboard Overview](https://i.ibb.co/cSL8pNHL/dashboard-overview.png)
 
 ## 🛠️ Built With
 
@@ -73,35 +73,31 @@ The application is currently functional for core tasks, though additional featur
 ## 📸 Screenshots
 
 ### Authentication
-![Login Page](./screenshots/login.png)
+![Login Page](https://i.ibb.co/mrzXygtk/login.png)
 *Secure login with email/password or Google OAuth*
 
-![Sign Up Page](./screenshots/signup.png)
+![Sign Up Page](https://i.ibb.co/Y4wH4qqQ/sign-up.png)
 *Easy registration process*
 
-![Forgot Password](./screenshots/forgot-password.png)
+![Forgot Password](https://i.ibb.co/cS53K7nD/forgot.png)
 *Password recovery via email*
 
 ### Dashboard
-![Overview Dashboard](./screenshots/overview.png)
+![Overview Dashboard](https://i.ibb.co/4gNYkxbj/dashboard.png)
 *Main dashboard with all features accessible*
 
-### Client Management
-![Client Cards](./screenshots/client-cards.png)
-*Visual client cards with drag-and-drop functionality*
-
-![Add Client Form](./screenshots/add-client-form.png)
+![Add Client Form](https://i.ibb.co/V0c2DGc9/form.png)
 *Simple form for adding new clients*
 
-![Client Details](./screenshots/client-details.png)
+![Client Details](https://i.ibb.co/gLfcKWRY/card-view.png)
 *Expanded client information view*
 
 ### Snippets
-![Snippets Section](./screenshots/snippets.png)
+![Snippets Section](https://i.ibb.co/wZXchYsw/snippets.png)
 *Quick access to frequently used text and links*
 
 ### Annotations
-![Annotations Area](./screenshots/annotations.png)
+![Annotations Area](https://i.ibb.co/v4bttjM8/note.png)
 *Freeform text area for notes*
 
 ## 🛠️ Tech Stack
