@@ -15,7 +15,7 @@ A streamlined client management system designed specifically for small fitness s
 
 ## 📋 Table of Contents
 
-- [About The Project](about-the-project)
+- [About The Project](#about-the-project)
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [Tech Stack](#tech-stack)
